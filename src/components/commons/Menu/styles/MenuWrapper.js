@@ -27,19 +27,19 @@ MenuWrapper.CentralSide = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-top: 17px;
-  border-top: 1px solid #88989E;
-  border-bottom: 1px solid #99989E;
-  padding: 12px
+  border-top: 1px solid #88989e;
+  border-bottom: 1px solid #99989e;
+  padding: 12px;
   a {
     text-align: center;
     display: block;
-    text-decoration: nome;
-    color #88989E;
+    text-decoration: none;
+    color: #88989e;
     transition: 200ms ease-in-out;
     &:hover,
     &:focus {
       font-weight: 500;
-      color: #070C0E;
+      color: #070c0e;
     }
   }
 `
