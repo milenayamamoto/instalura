@@ -3,8 +3,6 @@ import { breakpointsMedia } from './breakpointsMedia'
 
 export function propToStyle(propName) {
   return function (props) {
-    console.log('props[textAlign]', props[propName])
-
     const propValue = props[propName]
 
     if (typeof propValue === 'string') {
