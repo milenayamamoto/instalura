@@ -1,9 +1,9 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
-import get from 'lodash/get'
-import PropTypes from 'prop-types'
-import { propToStyle } from '../../../theme/utils/propToStyle'
-import { breakpointsMedia } from '../../../theme/utils/breakpointsMedia'
+import React from 'react';
+import styled, { css } from 'styled-components';
+import get from 'lodash/get';
+import PropTypes from 'prop-types';
+import { propToStyle } from '../../../theme/utils/propToStyle';
+import { breakpointsMedia } from '../../../theme/utils/breakpointsMedia';
 
 export const TextStyleVariantsMap = {
   paragraph1: css`
@@ -27,16 +27,16 @@ export const TextStyleVariantsMap = {
       line-height: ${theme.typographyVariants.titleXS.lineHeight};
     `}
     ${breakpointsMedia({
-      md: css`
+    md: css`
         ${({ theme }) => css`
           font-size: ${theme.typographyVariants.title.fontSize};
           font-weight: ${theme.typographyVariants.title.fontWeight};
           line-height: ${theme.typographyVariants.title.lineHeight};
         `}
-      `
-    })}
-  `
-}
+      `,
+  })}
+  `,
+};
 
 const TextBase = styled.span`
   ${({ variant }) => TextStyleVariantsMap[variant]}
@@ -45,9 +45,11 @@ const TextBase = styled.span`
   ${propToStyle('textAlign')}
   ${propToStyle('marginBottom')}
   ${propToStyle('margin')}
-`
+`;
 
-export function Text({ tag, variant, children, ...props }) {
+export function Text({
+  tag, variant, children, ...props
+}) {
   return (
     <TextBase
       as={tag}
@@ -57,16 +59,16 @@ export function Text({ tag, variant, children, ...props }) {
     >
       {children}
     </TextBase>
-  )
+  );
 }
 
 Text.propTypes = {
-  tag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'p', 'li', 'a', 'span']),
-  variant: PropTypes.oneOf(['paragraph1', 'smallestException']),
-  children: PropTypes.node.isRequired
-}
+  tag: PropTypes.string,
+  variant: PropTypes.string,
+  children: PropTypes.node.isRequired,
+};
 
 Text.defaultProps = {
   tag: 'span',
-  variant: 'paragraph1'
-}
+  variant: 'paragraph1',
+};
