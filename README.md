@@ -1,8 +1,8 @@
 <p align="center">
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/milenayamamoto/instalura-base">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/milenayamamoto/instalura">
   
-  <a href="https://github.com/milenayamamoto/instalura-base/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/milenayamamoto/instalura-base">
+  <a href="https://github.com/milenayamamoto/instalura/commits">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/milenayamamoto/instalura">
   </a>
     
    <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
@@ -25,7 +25,7 @@
  <a href="#-layout">Layout</a> • 
  <a href="#-como-executar-o-projeto">Como executar</a> • 
  <a href="#-tecnologias">Tecnologias</a> • 
- <a href="#-autor">Autora</a> • 
+ <a href="#-autora">Autora</a> • 
  <a href="#user-content--licença">Licença</a>
 </p>
 
@@ -71,7 +71,7 @@ O bootcamp possui o seguinte roadmap:
 <br />
 O layout da aplicação está disponível no Figma:
 <br />
-<a href="https://www.figma.com/file/Veefm1pjkeTFcJC7BUqHge/Instalura">
+<a href="https://www.figma.com/file/Veefm1pjkeTFcJC7BUqHge/Instalura" target="_blank">
   <img alt="Badge Figma" src="https://img.shields.io/badge/Acessar%20Layout%20-Figma-%2304D361">
 </a>
 <br />
@@ -84,10 +84,10 @@ O layout da aplicação está disponível no Figma:
 
 ```bash
 # Clone este repositório
-$ git clone git@github.com:milenayamamoto/instalura-base.git
+$ git clone git@github.com:milenayamamoto/instalura.git
 
 # Acesse a pasta do projeto no seu terminal/cmd
-$ cd instalura-base
+$ cd instalura
 
 # Instale as dependências
 $ npm install
@@ -126,7 +126,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
   </p>
 <br />
 
-> Confira o arquivo [package.json](https://github.com/milenayamamoto/instalura-base/blob/master/package.json) > <br />
+> Confira o arquivo [package.json](https://github.com/milenayamamoto/instalura/blob/master/package.json) > <br />
 
 ---
 
