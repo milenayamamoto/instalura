@@ -1,84 +1,168 @@
-# Example app with styled-components
+<p align="center">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/milenayamamoto/instalura-base">
+  
+  <a href="https://github.com/milenayamamoto/instalura-base/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/milenayamamoto/instalura-base">
+  </a>
+    
+   <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
+</p>
+ 
+ <br />
+<h1 align="center">
+    <a href="https://www.alura.com.br/bootcamp/front-end-avancado/matriculas-abertas">
+    <img src="./public/images/bootcamp-alura.svg" alt="Logo" height="80">
+  </a>
+</h1>
 
-This example features how you use a different styling solution than [styled-jsx](https://github.com/vercel/styled-jsx) that also supports universal styles. That means we can serve the required styles for the first render within the HTML and then load the rest in the client. In this case we are using [styled-components](https://github.com/styled-components/styled-components).
+<h4 align="center"> 
+	🚧 Instalura em andamento 🚧
+</h4>
 
-For this purpose we are extending the `<Document />` and injecting the server side rendered styles into the `<head>`, and also adding the `babel-plugin-styled-components` (which is required for server side rendering). Additionally we set up a global [theme](https://www.styled-components.com/docs/advanced#theming) for styled-components using NextJS custom [`<App>`](https://nextjs.org/docs/advanced-features/custom-app) component.
+<p align="center">
+ <a href="#-sobre-o-projeto">Sobre</a> •
+ <a href="#-roadmap">Roadmap</a> •
+ <a href="#-layout">Layout</a> • 
+ <a href="#-como-executar-o-projeto">Como executar</a> • 
+ <a href="#-tecnologias">Tecnologias</a> • 
+ <a href="#-autor">Autora</a> • 
+ <a href="#user-content--licença">Licença</a>
+</p>
 
-## Preview
-
-Preview the example live on [StackBlitz](http://stackblitz.com/):
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-styled-components)
-
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-styled-components&project-name=with-styled-components&repository-name=with-styled-components)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-styled-components with-styled-components-app
-# or
-yarn create next-app --example with-styled-components with-styled-components-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
-
-### Try it on CodeSandbox
-
-[Open this example on CodeSandbox](https://codesandbox.io/s/github/vercel/next.js/tree/canary/examples/with-styled-components)
-
-### Notes
-
-When wrapping a [Link](https://nextjs.org/docs/api-reference/next/link) from `next/link` within a styled-component, the [as](https://styled-components.com/docs/api#as-polymorphic-prop) prop provided by `styled` will collide with the Link's `as` prop and cause styled-components to throw an `Invalid tag` error. To avoid this, you can either use the recommended [forwardedAs](https://styled-components.com/docs/api#forwardedas-prop) prop from styled-components or use a different named prop to pass to a `styled` Link.
-
-<details>
-<summary>Click to expand workaround example</summary>
 <br />
 
-**components/StyledLink.js**
+## 💻 Sobre o projeto
 
-```javascript
-import Link from 'next/link'
-import styled from 'styled-components'
+<br />
+<p align="center">
+  <img src='./public/images/mockup.png' width='500px' alt='mockup do projeto' />
+</p>
 
-const StyledLink = ({ as, children, className, href }) => (
-  <Link href={href} as={as} passHref>
-    <a className={className}>{children}</a>
-  </Link>
-)
+Instalura - é um projeto baseado no Instagram, criado durante o bootcamp de front end avançado da Alura. O foco é a utilização de React com styled components.
 
-export default styled(StyledLink)`
-  color: #0075e0;
-  text-decoration: none;
-  transition: all 0.2s ease-in-out;
+O **Bootcamp Front-End Avançado** é oferecido pela [Alura](https://www.alura.com.br/bootcamp/front-end-avancado/matriculas-abertas).
 
-  &:hover {
-    color: #40a9ff;
-  }
+ <br />
 
-  &:focus {
-    color: #40a9ff;
-    outline: none;
-    border: 0;
-  }
-`
+---
+
+ <br />
+
+## 🛣️ Roadmap
+
+ <br />
+O bootcamp possui o seguinte roadmap:
+
+- [x] Módulo 01: JAMStack e layout com React
+- [ ] Módulo 02: State e Forms + boas práticas de Git e GitHub **(em andamento)**
+- [ ] Módulo 03: Se aprofundando no NextJS
+- [ ] Módulo 04: Testes com Cypress, Jest e React Testing Library
+- [ ] Módulo 05: Área autenticada e gerenciador de conteúdo (CMS)
+- [ ] Módulo 06: Storybook + TypeScript
+
+ <br />
+
+---
+
+ <br />
+
+## 🎨 Layout
+
+<br />
+O layout da aplicação está disponível no Figma:
+<br />
+<a href="https://www.figma.com/file/Veefm1pjkeTFcJC7BUqHge/Instalura">
+  <img alt="Badge Figma" src="https://img.shields.io/badge/Acessar%20Layout%20-Figma-%2304D361">
+</a>
+<br />
+
+---
+
+ <br />
+
+## 🚀 Como executar o projeto
+
+```bash
+# Clone este repositório
+$ git clone git@github.com:milenayamamoto/instalura-base.git
+
+# Acesse a pasta do projeto no seu terminal/cmd
+$ cd instalura-base
+
+# Instale as dependências
+$ npm install
+# ou
+$ yarn install
+
+# Execute a aplicação
+$ npm run dev
+# ou
+$ yarn dev
+
+# A aplicação será aberta na porta:3000 - acesse http://localhost:3000
+
 ```
 
-**pages/index.js**
+<br />
 
-```javascript
-import StyledLink from '../components/StyledLink'
+---
 
-export default () => (
-  <StyledLink href="/post/[pid]" forwardedAs="/post/abc">
-    First post
-  </StyledLink>
-)
-```
+<br />
 
-</details>
+## 🛠 Tecnologias
+
+ <br />
+
+As seguintes ferramentas foram usadas na construção do projeto:
+<br />
+
+  <p style="display:flex; gap: 15px;" >
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" width="50" alt="Ícone React" title="React" />
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nextjs/nextjs-original-wordmark.svg" width="50" alt="Ícone NextJS" title="NextJS" />
+    <img src="https://raw.githubusercontent.com/styled-components/brand/master/styled-components.png" width="60" alt="Ícone Styled Components" title="Styled Components" />
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" width="50" alt="Ícone Javascript" title="Javascript" />
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" width="50" alt="Ícone HTML5" title="HTML5" />
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" width="50" alt="Ícone CSS3" title="CSS3" />
+  </p>
+<br />
+
+> Confira o arquivo [package.json](https://github.com/milenayamamoto/instalura-base/blob/master/package.json) > <br />
+
+---
+
+<br />
+
+## 👩‍💻 Autora
+
+ <br />
+
+  <p align="center">
+  <img style="border-radius: 50%" src="https://github.com/milenayamamoto.png" width="100px;" alt=""/>
+  <br />
+  <b>Milena Yamamoto</b>
+  <br />
+  <br />
+ 
+  <a href="https://www.linkedin.com/in/milenayamamoto/">
+    <img alt="Linkedin Badge" src="https://img.shields.io/badge/-Milena-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/milenayamamoto/">
+  </a>
+
+  <a href="mailto:milenayamamoto@gmail.com">
+    <img alt="email" src="https://img.shields.io/badge/-milenayamamoto@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:milenayamamoto@gmail.com">
+  </a>
+    
+  </p>
+
+  <br />
+
+---
+
+<br />
+
+## 📝 Licença
+
+ <br />
+
+Este projeto está sob a licença [MIT](./LICENSE).
+
+Feito com ❤️ por [Milena Yamamoto](https://www.linkedin.com/in/milenayamamoto/)
