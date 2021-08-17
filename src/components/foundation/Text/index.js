@@ -1,24 +1,20 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import get from 'lodash/get';
 import PropTypes from 'prop-types';
+import get from 'lodash/get';
+import styled, { css } from 'styled-components';
 import { propToStyle } from '../../../theme/utils/propToStyle';
 import { breakpointsMedia } from '../../../theme/utils/breakpointsMedia';
 
 export const TextStyleVariantsMap = {
   paragraph1: css`
-    ${({ theme }) => css`
-      font-size: ${theme.typographyVariants.paragraph1.fontSize};
-      font-weight: ${theme.typographyVariants.paragraph1.fontWeight};
-      line-height: ${theme.typographyVariants.paragraph1.lineHeight};
-    `}
+    font-size: ${({ theme }) => theme.typographyVariants.paragraph1.fontSize};
+    font-weight: ${({ theme }) => theme.typographyVariants.paragraph1.fontWeight};
+    line-height: ${({ theme }) => theme.typographyVariants.paragraph1.lineHeight};
   `,
   smallestException: css`
-    ${({ theme }) => css`
-      font-size: ${theme.typographyVariants.smallestException.fontSize};
-      font-weight: ${theme.typographyVariants.smallestException.fontWeight};
-      line-height: ${theme.typographyVariants.smallestException.lineHeight};
-    `}
+    font-size: ${({ theme }) => theme.typographyVariants.smallestException.fontSize};
+    font-weight: ${({ theme }) => theme.typographyVariants.smallestException.fontWeight};
+    line-height: ${({ theme }) => theme.typographyVariants.smallestException.lineHeight};
   `,
   title: css`
     ${({ theme }) => css`
@@ -39,15 +35,15 @@ export const TextStyleVariantsMap = {
 };
 
 const TextBase = styled.span`
-  ${({ variant }) => TextStyleVariantsMap[variant]}
-  color: ${({ theme, color }) => get(theme, `colors.${color}.color`)}
-  
+  ${(props) => TextStyleVariantsMap[props.variant]}
+  color: ${(props) => get(props.theme, `colors.${props.color}.color`)};
+
   ${propToStyle('textAlign')}
   ${propToStyle('marginBottom')}
   ${propToStyle('margin')}
 `;
 
-export function Text({
+export default function Text({
   tag, variant, children, ...props
 }) {
   return (
@@ -65,10 +61,11 @@ export function Text({
 Text.propTypes = {
   tag: PropTypes.string,
   variant: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 Text.defaultProps = {
   tag: 'span',
   variant: 'paragraph1',
+  children: null,
 };
