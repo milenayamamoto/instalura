@@ -44,6 +44,15 @@ export const Button = styled.button`
     `,
   })}
 
+  &:disabled {
+    cursor: not-allowed;
+    opacity: .2s;
+  }
+
+  ${({ fullWidth }) => fullWidth && css`
+    width: 100%;
+  `};
+
   ${propToStyle('margin')}
   ${propToStyle('display')}
 `;
