@@ -137,5 +137,7 @@ export const Grid = {
     ${propToStyle('justifyContent')}
     ${propToStyle('flexDirection')}
     ${propToStyle('paddingRight')}
+    ${propToStyle('backgroundColor')}
+    ${propToStyle('boxShadow')}
   `,
 };

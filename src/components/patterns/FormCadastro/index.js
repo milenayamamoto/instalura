@@ -72,6 +72,8 @@ function FormContent() {
 
 // eslint-disable-next-line react/prop-types
 export default function FormCadastro({ propsDoModal }) {
+  // eslint-disable-next-line no-console
+  console.log('PROPS DO MODAL', propsDoModal);
   return (
     <Grid.Row
       marginLeft={0}
@@ -81,12 +83,20 @@ export default function FormCadastro({ propsDoModal }) {
     >
       <Grid.Col
         display="flex"
+        flexDirection="column"
         paddingRight={{ md: '0' }}
         flex={1}
         value={{ xs: 12, md: 5, lg: 4 }}
+        backgroundColor="white"
+        boxShadow="-10px 0px 24px rgba(7, 12, 14, 0.1)"
       >
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          {/* eslint-disable-next-line react/prop-types */}
+          <Button type="button" variant="tertiary.light" fontSize="30px" onClick={propsDoModal.onClose} ghost>
+            X
+          </Button>
+        </div>
         <Box
-          boxShadow="-10px 0px 24px rgba(7, 12, 14, 0.1)"
           display="flex"
           flexDirection="column"
           justifyContent="center"
@@ -95,7 +105,6 @@ export default function FormCadastro({ propsDoModal }) {
             xs: '16px',
             md: '85px',
           }}
-          backgroundColor="white"
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...propsDoModal}
         >

@@ -23,8 +23,10 @@ export const Button = styled.button`
   opacity: 1;
   transition: opacity ${({ theme }) => theme.transition};
   border-radius: ${({ theme }) => theme.borderRadius};
+  font-size: ${({ fontSize }) => (`${fontSize} !important` ?? '16px')};
 
   ${TextStyleVariantsMap.smallestException}
+
 
   ${({ ghost }) => (ghost ? ButtonGhost : ButtonDefault)}
 
@@ -55,4 +57,6 @@ export const Button = styled.button`
 
   ${propToStyle('margin')}
   ${propToStyle('display')}
+  ${propToStyle('justifyContent')}
+  ${propToStyle('fontSize')}
 `;
