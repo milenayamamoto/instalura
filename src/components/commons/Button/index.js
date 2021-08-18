@@ -23,8 +23,10 @@ export const Button = styled.button`
   opacity: 1;
   transition: opacity ${({ theme }) => theme.transition};
   border-radius: ${({ theme }) => theme.borderRadius};
+  font-size: ${({ fontSize }) => (`${fontSize} !important` ?? '16px')};
 
   ${TextStyleVariantsMap.smallestException}
+
 
   ${({ ghost }) => (ghost ? ButtonGhost : ButtonDefault)}
 
@@ -44,6 +46,17 @@ export const Button = styled.button`
     `,
   })}
 
+  &:disabled {
+    cursor: not-allowed;
+    opacity: .2s;
+  }
+
+  ${({ fullWidth }) => fullWidth && css`
+    width: 100%;
+  `};
+
   ${propToStyle('margin')}
   ${propToStyle('display')}
+  ${propToStyle('justifyContent')}
+  ${propToStyle('fontSize')}
 `;
