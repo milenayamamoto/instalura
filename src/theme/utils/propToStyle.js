@@ -1,15 +1,8 @@
-import { css } from 'styled-components';
 import { breakpointsMedia } from './breakpointsMedia';
 
 export function propToStyle(propName) {
-  return function (props) {
+  return (props) => {
     const propValue = props[propName];
-
-    if (typeof propValue === 'string' || typeof propValue === 'number') {
-      return {
-        [propName]: propValue,
-      };
-    }
 
     if (typeof propValue === 'object') {
       return breakpointsMedia({
@@ -30,5 +23,9 @@ export function propToStyle(propName) {
         },
       });
     }
+
+    return {
+      [propName]: propValue,
+    };
   };
 }
