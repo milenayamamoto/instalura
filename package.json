@@ -1,4 +1,5 @@
 {
+  "name": "instalura-base",
   "private": true,
   "scripts": {
     "dev": "next",
