@@ -9,7 +9,7 @@ import Modal from '../src/components/commons/Modal';
 import FormCadastro from '../src/components/patterns/FormCadastro';
 
 export default function Home() {
-  const [isModalOpen, setModalState] = useState(true);
+  const [isModalOpen, setModalState] = useState(false);
 
   return (
     <Box
@@ -34,7 +34,7 @@ export default function Home() {
         )}
       </Modal>
 
-      <Menu />
+      <Menu onCadastrarClick={() => setModalState(true)} />
       <Grid.Container marginTop={{
         xs: '32px',
         md: '75px',
