@@ -7,7 +7,7 @@ export default function SEO({ headTitle }) {
   const baseTitle = 'Instalura - Projeto Base do Alura Bootcamp JAMStack';
   const title = hasHeadTitle ? `${headTitle} | ${baseTitle}` : baseTitle;
 
-  const description = 'Aprenda Programação, Front-end, Data Science, UX, DevOps, Marketing';
+  const description = 'Aprenda Programação, Front-end, Data Science, UX, DevOps, Marketing, Inovação e Gestão na maior plataforma de tecnologia do Brasil';
   const image = 'https://www.alura.com.br/assets/img/alura-share.1571848411.png';
   const urlBase = 'https://instalura-milenayamamoto.vercel.app';
 
