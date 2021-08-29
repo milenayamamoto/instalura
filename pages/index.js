@@ -1,49 +1,34 @@
-import React, { useState } from 'react';
-import Menu from '../src/components/commons/Menu';
-import Footer from '../src/components/commons/Footer';
+import React, { useContext } from 'react';
 import Text from '../src/components/foundation/Text';
 import { Button } from '../src/components/commons/Button';
 import { Grid } from '../src/components/foundation/layout/Grid';
+import { WebsitePageContext } from '../src/components/wrappers/WebsitePage';
 import { Box } from '../src/components/foundation/layout/Box';
-import Modal from '../src/components/commons/Modal';
-import FormCadastro from '../src/components/patterns/FormCadastro';
+import websitePageHOC from '../src/components/wrappers/WebsitePage/hoc';
 
-export default function Home() {
-  const [isModalOpen, setModalState] = useState(true);
+function HomeScreen() {
+  const websitePageContext = useContext(WebsitePageContext);
+
+  const handleClick = () => {
+    websitePageContext.toggleModalCadastro();
+  };
 
   return (
     <Box
-      flex="1"
       display="flex"
-      flexWrap="wrap"
       flexDirection="column"
-      justifyContent="space-between"
-      backgroundImage="url(/images/bubbles.svg)"
-      backgroundRepeat="no-repeat"
-      backgroundPosition="bottom right"
+      flex="1"
     >
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => {
-          setModalState(false);
+      <Grid.Container
+        marginTop={{
+          xs: '32px',
+          md: '75px',
         }}
-      >
-        {(propsDoModal) => (
-          <FormCadastro propsDoModal={propsDoModal} />
-
-        )}
-      </Modal>
-
-      <Menu />
-      <Grid.Container marginTop={{
-        xs: '32px',
-        md: '75px',
-      }}
       >
         <Grid.Row>
           <Grid.Col
-            offset={{ xs: 0, md: 1 }}
             value={{ xs: 12, md: 5 }}
+            offset={{ xs: 0, md: 1 }}
             display="flex"
             alignItems="flex-start"
             justifyContent="center"
@@ -69,26 +54,28 @@ export default function Home() {
                 md: 'left',
               }}
             >
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industrys standard dummy text
-              ever since the 1500s.
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+              Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.
             </Text>
 
             <Button
-              variant="primary.main"
               margin={{
                 xs: 'auto',
                 md: 'initial',
               }}
               display="block"
-              onClick={() => {
-                setModalState(!isModalOpen);
-              }}
+              variant="primary.main"
+              onClick={handleClick}
             >
               Cadastrar
             </Button>
           </Grid.Col>
-          <Grid.Col value={{ xs: 12, md: 6 }}>
+          <Grid.Col
+            value={{
+              xs: 12,
+              md: 6,
+            }}
+          >
             <img
               alt="Imagem de celular com páginas internas do projeto com o perfil do Cage"
               style={{ display: 'block', margin: 'auto' }}
@@ -97,7 +84,19 @@ export default function Home() {
           </Grid.Col>
         </Grid.Row>
       </Grid.Container>
-      <Footer />
     </Box>
   );
 }
+
+export default websitePageHOC(HomeScreen, {
+  pageWrapperProps: {
+    seoProps: {
+      headTitle: 'Home',
+    },
+    pageBoxProps: {
+      backgroundImage: 'url(/images/bubbles.svg)',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'bottom right',
+    },
+  },
+});
