@@ -54,8 +54,8 @@ O **Bootcamp Front-End Avançado** é oferecido pela [Alura](https://www.alura.c
 O bootcamp possui o seguinte roadmap:
 
 - [x] Módulo 01: JAMStack e layout com React
-- [ ] Módulo 02: State e Forms + boas práticas de Git e GitHub **(em andamento)**
-- [ ] Módulo 03: Se aprofundando no NextJS
+- [x] Módulo 02: State e Forms + boas práticas de Git e GitHub
+- [ ] Módulo 03: Se aprofundando no NextJS **(em andamento)**
 - [ ] Módulo 04: Testes com Cypress, Jest e React Testing Library
 - [ ] Módulo 05: Área autenticada e gerenciador de conteúdo (CMS)
 - [ ] Módulo 06: Storybook + TypeScript
@@ -86,9 +86,6 @@ O layout da aplicação está disponível no Figma:
 # Clone este repositório
 $ git clone git@github.com:milenayamamoto/instalura.git
 
-# Acesse a pasta do projeto no seu terminal/cmd
-$ cd instalura
-
 # Instale as dependências
 $ npm install
 # ou
@@ -98,8 +95,6 @@ $ yarn install
 $ npm run dev
 # ou
 $ yarn dev
-
-# A aplicação será aberta na porta:3000 - acesse http://localhost:3000
 
 ```
 
