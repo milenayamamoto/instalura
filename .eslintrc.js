@@ -2,8 +2,9 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    'cypress/globals': true,
   },
-  extends: ['plugin:react/recommended', 'airbnb'],
+  extends: ['plugin:cypress/recommended', 'plugin:react/recommended', 'airbnb'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -16,5 +17,6 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'import/prefer-default-export': 'off',
     'linebreak-style': 0,
+    'react/jsx-props-no-spreading': 'off',
   },
 };

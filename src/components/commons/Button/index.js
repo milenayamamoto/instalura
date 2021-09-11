@@ -69,7 +69,6 @@ export function Button({ href, children, ...props }) {
   const tag = hasHref ? Link : 'button';
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <ButtonWrapper as={tag} href={href} {...props}>
       {children}
     </ButtonWrapper>

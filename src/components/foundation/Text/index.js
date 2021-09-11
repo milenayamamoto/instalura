@@ -53,7 +53,6 @@ export default function Text({
         as={Link}
         href={href}
         variant={variant}
-      // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
       >
         {children}
@@ -65,7 +64,6 @@ export default function Text({
     <TextBase
       as={tag}
       variant={variant}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       {children}
