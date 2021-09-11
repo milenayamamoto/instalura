@@ -167,7 +167,6 @@ export default function FormCadastro({ propsDoModal }) {
             xs: '16px',
             md: '85px',
           }}
-          // eslint-disable-next-line react/jsx-props-no-spreading
           {...propsDoModal}
         >
           <FormContent />

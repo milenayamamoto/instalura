@@ -1,10 +1,23 @@
 import React from 'react';
 
-export function Logo() {
+const sizes = {
+  small: {
+    width: 96,
+    height: 24,
+  },
+  large: {
+    width: 186,
+    height: 46,
+  },
+};
+
+// eslint-disable-next-line react/prop-types
+export function Logo({ size }) {
+  const { width, height } = sizes[size] || sizes.small;
   return (
     <svg
-      width="131"
-      height="32"
+      width={width}
+      height={height}
       viewBox="0 0 131 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
