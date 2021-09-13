@@ -1,4 +1,5 @@
 import { setCookie, destroyCookie } from 'nookies';
+import { isStagingEnv } from '../../infra/env/isStagingEnv';
 
 async function HttpClient(url, { headers, body, ...options }) {
   return fetch(url, {
@@ -8,35 +9,37 @@ async function HttpClient(url, { headers, body, ...options }) {
     },
     body: JSON.stringify(body),
     ...options,
-  })
-    .then((respostaDoServer) => {
-      if (respostaDoServer.ok) {
-        return respostaDoServer.json();
-      }
+  }).then((respostaDoServer) => {
+    if (respostaDoServer.ok) {
+      return respostaDoServer.json();
+    }
 
-      throw new Error('Falha em pegar os dados do servidor :(');
-    });
+    throw new Error('Falha em pegar os dados do servidor :(');
+  });
 }
+
+const BASE_URL = isStagingEnv
+  ? 'https://instalura-api-git-master-omariosouto.vercel.app'
+  : 'https://instalura-api.omariosouto.vercel.app';
 
 export const loginService = {
   async login({ username, password }) {
-    return HttpClient('https://instalura-api-git-master-omariosouto.vercel.app/api/login', {
+    return HttpClient(`${BASE_URL}/api/login`, {
       method: 'POST',
       body: {
         username,
         password,
       },
-    })
-      .then((respostaConvertida) => {
-        const { token } = respostaConvertida.data;
-        const DAY_IN_SECONDS = 60 * 60 * 24;
+    }).then((respostaConvertida) => {
+      const { token } = respostaConvertida.data;
+      const DAY_IN_SECONDS = 60 * 60 * 24;
 
-        setCookie(null, 'APP_TOKEN', token, {
-          path: '/',
-          maxAge: DAY_IN_SECONDS * 7,
-        });
-        return { token };
+      setCookie(null, 'APP_TOKEN', token, {
+        path: '/',
+        maxAge: DAY_IN_SECONDS * 7,
       });
+      return { token };
+    });
   },
   logout() {
     destroyCookie('APP_TOKEN');
