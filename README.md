@@ -21,7 +21,6 @@
 
 <p align="center">
  <a href="#-sobre-o-projeto">Sobre</a> •
- <a href="#-roadmap">Roadmap</a> •
  <a href="#-layout">Layout</a> • 
  <a href="#-como-executar-o-projeto">Como executar</a> • 
  <a href="#-tecnologias">Tecnologias</a> • 
@@ -45,20 +44,6 @@ O **Bootcamp Front-End Avançado** é oferecido pela [Alura](https://www.alura.c
  <br />
 
 ---
-
- <br />
-
-## 🛣️ Roadmap
-
- <br />
-O bootcamp possui o seguinte roadmap:
-
-- [x] Módulo 01: JAMStack e layout com React
-- [x] Módulo 02: State e Forms + boas práticas de Git e GitHub
-- [ ] Módulo 03: Se aprofundando no NextJS **(em andamento)**
-- [ ] Módulo 04: Testes com Cypress, Jest e React Testing Library
-- [ ] Módulo 05: Área autenticada e gerenciador de conteúdo (CMS)
-- [ ] Módulo 06: Storybook + TypeScript
 
  <br />
 
