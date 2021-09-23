@@ -47,10 +47,6 @@ O **Bootcamp Front-End Avançado** é oferecido pela [Alura](https://www.alura.c
 
  <br />
 
----
-
- <br />
-
 ## 🎨 Layout
 
 <br />
