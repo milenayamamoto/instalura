@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
@@ -10,8 +11,11 @@ export default function websitePageHOC(
 ) {
   return (props) => (
     <WebsiteGlobalProvider>
-      {/* eslint-disable-next-line react/destructuring-assignment */}
-      <WebsitePageWrapper {...pageWrapperProps} {...props.pageWrapperProps}>
+      <WebsitePageWrapper
+        {...pageWrapperProps}
+        {...props.pageWrapperProps}
+        messages={props.messages}
+      >
         <PageComponent {...props} />
       </WebsitePageWrapper>
     </WebsiteGlobalProvider>
