@@ -34,7 +34,9 @@ export const loginService = {
         path: '/',
         maxAge: DAY_IN_SECONDS * 7,
       });
-      return { token };
+      return {
+        token,
+      };
     });
   },
   async logout(ctx, destroyCookieModule = destroyCookie) {
