@@ -1,10 +1,10 @@
 import { setCookie, destroyCookie } from 'nookies';
-import { isStagingEnv } from '../../infra/env/isStagingEnv';
 import { HttpClient } from '../../infra/http/HttpClient';
 
-const BASE_URL = isStagingEnv
-  ? 'https://instalura-api-git-master-omariosouto.vercel.app'
-  : 'https://instalura-api.omariosouto.vercel.app';
+const BASE_URL = 'https://instalura-api-git-master-omariosouto.vercel.app';
+// isStagingEnv
+//   ? 'https://instalura-api-git-master-omariosouto.vercel.app'
+//   : 'https://instalura-api.omariosouto.vercel.app';
 
 export const LOGIN_COOKIE_APP_TOKEN = 'LOGIN_COOKIE_APP_TOKEN';
 
