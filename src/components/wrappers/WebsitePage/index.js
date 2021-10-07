@@ -4,10 +4,12 @@ import get from 'lodash/get';
 import PropTypes from 'prop-types';
 import Footer from '../../commons/Footer';
 import Menu from '../../commons/Menu';
+import MenuLogado from '../../commons/MenuLogado';
 import Modal from '../../commons/Modal';
 import { Box } from '../../foundation/layout/Box';
 import FormCadastro from '../../patterns/FormCadastro';
 import SEO from '../../commons/SEO';
+import { useUserService } from '../../../services/user/hook';
 
 import { WebsitePageContext } from './context';
 
@@ -21,14 +23,18 @@ export default function WebsitePageWrapper({
 }) {
   const [isModalOpen, setModalState] = useState(false);
 
+  const { posts, user } = useUserService.getProfilePage();
+
+  console.log({ posts, user });
   return (
     <WebsitePageContext.Provider
       value={{
-        teste: true,
         toggleModalCadastro: () => {
           setModalState(!isModalOpen);
         },
         getCMSContent: (cmsKey) => get(messages, cmsKey),
+        posts,
+        user,
       }}
     >
       <SEO
@@ -51,7 +57,7 @@ export default function WebsitePageWrapper({
             <FormCadastro propsDoModal={propsDoModal} />
           )}
         </Modal>
-        {menuProps.display && (
+        {user ? <MenuLogado user={user} /> : menuProps.display && (
           <Menu
             onCadastrarClick={() => setModalState(true)}
           />
@@ -70,6 +76,7 @@ WebsitePageWrapper.defaultProps = {
     display: true,
   },
   messages: {},
+  isLogged: false,
 };
 
 WebsitePageWrapper.propTypes = {
@@ -87,4 +94,5 @@ WebsitePageWrapper.propTypes = {
   children: PropTypes.node.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   messages: PropTypes.object,
+  isLogged: PropTypes.bool,
 };

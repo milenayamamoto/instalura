@@ -23,6 +23,17 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
   }
+  .menu-button {
+    -webkit-transition: -webkit-transform .3s ease-in-out;
+    transition: transform .3s ease-in-out;
+  }
+  .menu-button:hover {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+  .menu-wrapper .input-wrapper {
+    margin-bottom: 0;
+  }
 `;
 
 export default GlobalStyle;

@@ -20,13 +20,20 @@ export const userService = {
       });
 
       return {
-        user: {
-          totalLikes: 100,
-        },
         posts: response.data,
       };
     } catch (err) {
       throw new Error('Não conseguimos trazer os posts');
     }
+  },
+
+  async getUser(ctx) {
+    const auth = authService(ctx);
+
+    const session = await auth.getSession();
+
+    return {
+      user: session,
+    };
   },
 };

@@ -3,7 +3,13 @@ import { userService } from './userService';
 
 export const useUserService = {
   getProfilePage() {
-    const [response, setResponse] = useState({
+    const [posts, setPosts] = useState({
+      data: null,
+      loading: true,
+      error: null,
+    });
+
+    const [user, setUser] = useState({
       data: null,
       loading: true,
       error: null,
@@ -13,14 +19,32 @@ export const useUserService = {
       userService
         .getProfilePage()
         .then((responseFromServer) => {
-          setResponse((currentState) => ({
+          setPosts((currentState) => ({
             ...currentState,
             data: responseFromServer,
             loading: false,
           }));
         })
         .catch((err) => {
-          setResponse((currentState) => ({
+          setPosts((currentState) => ({
+            ...currentState,
+            data: null,
+            loading: false,
+            error: err.message,
+          }));
+        });
+
+      userService
+        .getUser()
+        .then((responseFromServer) => {
+          setUser((currentState) => ({
+            ...currentState,
+            data: responseFromServer,
+            loading: false,
+          }));
+        })
+        .catch((err) => {
+          setUser((currentState) => ({
             ...currentState,
             data: null,
             loading: false,
@@ -29,6 +53,9 @@ export const useUserService = {
         });
     }, []);
 
-    return response;
+    return {
+      posts: posts.data?.posts,
+      user: user.data?.user,
+    };
   },
 };
