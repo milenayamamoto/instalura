@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import get from 'lodash/get';
 import PropTypes from 'prop-types';
+import isEmpty from 'lodash/isEmpty';
 import Footer from '../../commons/Footer';
 import Menu from '../../commons/Menu';
 import MenuLogado from '../../commons/MenuLogado';
@@ -25,7 +26,6 @@ export default function WebsitePageWrapper({
 
   const { posts, user } = useUserService.getProfilePage();
 
-  console.log({ posts, user });
   return (
     <WebsitePageContext.Provider
       value={{
@@ -57,13 +57,13 @@ export default function WebsitePageWrapper({
             <FormCadastro propsDoModal={propsDoModal} />
           )}
         </Modal>
-        {user ? <MenuLogado user={user} /> : menuProps.display && (
+        {!isEmpty(user) ? <MenuLogado user={user} /> : menuProps.display && (
           <Menu
             onCadastrarClick={() => setModalState(true)}
           />
         )}
         {children}
-        <Footer />
+        {isEmpty(user) && <Footer />}
       </Box>
     </WebsitePageContext.Provider>
   );
@@ -76,7 +76,6 @@ WebsitePageWrapper.defaultProps = {
     display: true,
   },
   messages: {},
-  isLogged: false,
 };
 
 WebsitePageWrapper.propTypes = {
@@ -94,5 +93,4 @@ WebsitePageWrapper.propTypes = {
   children: PropTypes.node.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   messages: PropTypes.object,
-  isLogged: PropTypes.bool,
 };

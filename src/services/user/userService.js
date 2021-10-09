@@ -37,3 +37,22 @@ export const userService = {
     };
   },
 };
+
+export const githubProfile = {
+  async getGithubProfile(id) {
+    const url = `https://api.github.com/user/${id}`;
+
+    try {
+      const response = await fetch(url).then(async (respostaDoServer) => {
+        const resposta = await respostaDoServer.json();
+        return resposta;
+      });
+
+      return {
+        githubUser: response,
+      };
+    } catch (err) {
+      throw new Error('Não conseguimos trazer o usuário do Github');
+    }
+  },
+};

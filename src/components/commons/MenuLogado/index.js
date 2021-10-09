@@ -15,12 +15,12 @@ export default function Menu({ user }) {
   };
 
   return (
-    <MenuWrapper className="menu-wrapper">
+    <MenuWrapper
+      className="menu-wrapper"
+      style={{ borderBottom: '1px solid #D5D5D5' }}
+    >
       <MenuWrapper.LeftSide>
-        <Link
-          href="/app/profile"
-          color="secondary.main"
-        >
+        <Link href="/app/profile" color="secondary.main">
           <Logo />
         </Link>
       </MenuWrapper.LeftSide>
@@ -32,17 +32,36 @@ export default function Menu({ user }) {
           onChange={handleSearch}
           style={{ marginBottom: 0 }}
         />
-        <Button type="img" ghost variant="secondary.main" className="menu-button">
+        <Button
+          type="img"
+          ghost
+          variant="secondary.main"
+          className="rotate-button"
+        >
           <img src="/images/postIcon.svg" alt="Ícone de criar nova postagem" />
         </Button>
-        <Button type="img" ghost variant="secondary.main" className="menu-button">
+        <Button
+          type="img"
+          ghost
+          variant="secondary.main"
+          className="rotate-button"
+        >
           <img src="/images/home.svg" alt="Ícone de home" />
         </Button>
-        <Button type="img" ghost variant="secondary.main" className="menu-button">
+        <Button
+          type="img"
+          ghost
+          variant="secondary.main"
+          className="rotate-button"
+        >
           <img src="/images/heart.svg" alt="Ícone de curtida" />
         </Button>
         <Button type="img" ghost variant="secondary.main">
-          <img src={`https://github.com/${user?.username}.png`} alt="Foto de perfil" style={{ borderRadius: '50%', width: '40px' }} />
+          <img
+            src={`https://github.com/${user?.username}.png`}
+            alt="Foto de perfil"
+            style={{ borderRadius: '50%', width: '40px' }}
+          />
         </Button>
       </MenuWrapper.RightSide>
     </MenuWrapper>

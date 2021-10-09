@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { userService } from './userService';
+import { userService, githubProfile } from './userService';
 
 export const useUserService = {
   getProfilePage() {
@@ -56,6 +56,40 @@ export const useUserService = {
     return {
       posts: posts.data?.posts,
       user: user.data?.user,
+    };
+  },
+};
+
+export const useGetUserGithubById = {
+  getGithubProfile(id) {
+    const [userGithub, setUserGithub] = useState({
+      data: null,
+      loading: true,
+      error: null,
+    });
+
+    useEffect(() => {
+      githubProfile
+        .getGithubProfile(id)
+        .then((responseFromServer) => {
+          setUserGithub((currentState) => ({
+            ...currentState,
+            data: responseFromServer,
+            loading: false,
+          }));
+        })
+        .catch((err) => {
+          setUserGithub((currentState) => ({
+            ...currentState,
+            data: null,
+            loading: false,
+            error: err.message,
+          }));
+        });
+    }, [id]);
+
+    return {
+      githubUser: userGithub.data?.githubUser,
     };
   },
 };

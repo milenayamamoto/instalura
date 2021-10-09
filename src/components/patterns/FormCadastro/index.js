@@ -53,10 +53,9 @@ function FormContent() {
 
         throw new Error('Não foi possível cadastrar o usuário agora: (');
       })
-      .then((respostaConvertidaEmObjeto) => {
+      // eslint-disable-next-line no-unused-vars
+      .then(() => {
         setSubmissionStatus(formStates.DONE);
-        // eslint-disable-next-line no-console
-        console.log(respostaConvertidaEmObjeto);
       })
       .catch((error) => {
         setSubmissionStatus(formStates.ERROR);

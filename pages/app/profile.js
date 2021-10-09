@@ -1,6 +1,5 @@
 import React from 'react';
 import { authService } from '../../src/services/auth/authService';
-import { userService } from '../../src/services/user/userService';
 import ProfileScreen from '../../src/components/screens/app/ProfileScreen';
 import websitePageHOC from '../../src/components/wrappers/WebsitePage/hoc';
 
@@ -15,7 +14,6 @@ export default websitePageHOC(ProfilePage, {
     seoProps: {
       headTitle: 'Timeline',
     },
-    isLogged: true,
   },
 });
 
@@ -25,16 +23,11 @@ export async function getServerSideProps(ctx) {
 
   if (hasActiveSession) {
     const session = await auth.getSession();
-    const profilePage = await userService.getProfilePage(ctx);
     return {
       props: {
         user: {
           ...session,
-          // ...profilePage.user,
         },
-        isLogged: hasActiveSession,
-        profilePage,
-        // posts: profilePage.posts,
       },
     };
   }
