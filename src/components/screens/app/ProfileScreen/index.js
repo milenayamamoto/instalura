@@ -18,6 +18,7 @@ export default function ProfileScreen() {
     setSlicedPosts(posts.slice(0, 5));
   }, [posts]);
 
+  // eslint-disable-next-line no-console
   console.log('CONTEXT', posts, posts?.[0], user, slicedPosts);
 
   const renderPosts = () => slicedPosts?.map((post) => <Card user={user} post={post} key={post._id} />);

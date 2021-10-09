@@ -19,6 +19,8 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'linebreak-style': 0,
     'react/jsx-props-no-spreading': 'off',
+    'no-underscore-dangle': 'off',
+    'max-len': ['error', { code: 120 }],
   },
   overrides: [
     {
