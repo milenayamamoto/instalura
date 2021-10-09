@@ -20,7 +20,7 @@ module.exports = {
     'linebreak-style': 0,
     'react/jsx-props-no-spreading': 'off',
     'no-underscore-dangle': 'off',
-    'max-len': ['error', { code: 120 }],
+    'max-len': 'off',
   },
   overrides: [
     {
