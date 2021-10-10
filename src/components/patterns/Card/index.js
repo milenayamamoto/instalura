@@ -7,7 +7,7 @@ import CardDescription from './CardDescription';
 
 export default function Card({ user, post }) {
   return (
-    <Box width="55%" marginBottom="5rem">
+    <Box width="100%" marginBottom="5rem">
       <CardHeader user={user} post={post} />
       <img
         src={post?.photoUrl}

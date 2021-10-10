@@ -4,6 +4,7 @@ import { Box } from '../../../foundation/layout/Box';
 import { Grid } from '../../../foundation/layout/Grid';
 import { WebsitePageContext } from '../../../wrappers/WebsitePage';
 import Card from '../../../patterns/Card';
+import LateralMenu from '../../../commons/LateralMenu';
 
 export default function ProfileScreen() {
   const websitePageContext = useContext(WebsitePageContext);
@@ -23,17 +24,13 @@ export default function ProfileScreen() {
 
   const renderPosts = () => slicedPosts?.map((post) => <Card user={user} post={post} key={post._id} />);
 
+  const renderLateralMenu = () => <LateralMenu user={user} />;
+
   return (
-    <Box backgroundColor="#E5E5E5">
-      <Grid.Container
-        flex="1"
-        marginTop={{
-          xs: '32px',
-          md: '80px',
-        }}
-      >
+    <Box backgroundColor="#E5E5E5" padding="2rem 0 0 0">
+      <Grid.Container display="flex">
         <Grid.Col>{!isEmpty(slicedPosts) && renderPosts()}</Grid.Col>
-        <Grid.Col>Menu lateral</Grid.Col>
+        <Grid.Col>{renderLateralMenu()}</Grid.Col>
       </Grid.Container>
     </Box>
   );
