@@ -1,36 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { isEmpty } from 'lodash';
 import { Box } from '../../../foundation/layout/Box';
 import { Grid } from '../../../foundation/layout/Grid';
 import Text from '../../../foundation/Text';
 import { Button } from '../../Button';
 
-// eslint-disable-next-line spaced-comment
-//HARDCODED
-export default function OtherProjects() {
-  const profiles = [
-    {
-      img: '/images/john_cena.png',
-      name: 'john_cena',
-      description: 'IT’S JOHN CENA',
-    },
-    {
-      img: '/images/leeroy_jenkins.png',
-      name: 'leeroy.jenkins',
-      description: 'Leeroy Jenkins Official',
-    },
-    {
-      img: '/images/ronaldinho_gaucho.png',
-      name: 'gauchoronaldinho',
-      description: 'Ronaldin Gaúcho',
-    },
-    {
-      img: '/images/wally.png',
-      name: 'wally',
-      description: 'this time it was easy',
-    },
-  ];
+export default function OtherProjects({ users }) {
+  const [randomProfiles, setRandomProfiles] = useState();
 
-  const renderProfiles = () => profiles.map((profile) => (
+  useEffect(() => {
+    if (isEmpty(users)) return;
+
+    setRandomProfiles(users.sort(() => 0.5 - Math.random()).slice(0, 5));
+  }, [users]);
+
+  const renderProfiles = () => randomProfiles?.map((profile) => (
     <Box>
       <Grid.Row alignItems="center">
         <Grid.Col>
@@ -44,15 +29,16 @@ export default function OtherProjects() {
             gap="10px"
           >
             <img
-              src={profile.img}
+              src={`https://github.com/${profile?.username}.png`}
+              onError={(e) => { e.target.onerror = null; e.target.src = '/images/avatar.png'; }}
               alt={`Foto de ${profile.name}`}
               style={{ borderRadius: '50%', width: '40px' }}
             />
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <Text color="tertiary.dark">
-                <strong>{profile.name}</strong>
+                <strong>{profile.username}</strong>
               </Text>
-              <Text color="tertiary.light">{profile.description}</Text>
+              <Text color="tertiary.light">{profile.name}</Text>
             </div>
           </Button>
         </Grid.Col>
@@ -89,3 +75,12 @@ export default function OtherProjects() {
     </Box>
   );
 }
+
+OtherProjects.defaultProps = {
+  users: {},
+};
+
+OtherProjects.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  users: PropTypes.object,
+};

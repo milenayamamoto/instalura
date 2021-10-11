@@ -24,7 +24,7 @@ export default function WebsitePageWrapper({
 }) {
   const [isModalOpen, setModalState] = useState(false);
 
-  const { posts, user } = useUserService.getProfilePage();
+  const { posts, user, users } = useUserService.getProfilePage();
 
   return (
     <WebsitePageContext.Provider
@@ -35,6 +35,7 @@ export default function WebsitePageWrapper({
         getCMSContent: (cmsKey) => get(messages, cmsKey),
         posts,
         user,
+        users,
       }}
     >
       <SEO

@@ -1,17 +1,21 @@
 import React, { useContext, useState, useEffect } from 'react';
 import isEmpty from 'lodash/isEmpty';
+import { parseCookies } from 'nookies';
 import { Box } from '../../../foundation/layout/Box';
 import { Grid } from '../../../foundation/layout/Grid';
 import { WebsitePageContext } from '../../../wrappers/WebsitePage';
 import Card from '../../../patterns/Card';
 import LateralMenu from '../../../commons/LateralMenu';
+import { LOGIN_COOKIE_APP_TOKEN } from '../../../../services/login/loginService';
+import { HttpClient } from '../../../../infra/http/HttpClient';
 
 export default function ProfileScreen() {
   const websitePageContext = useContext(WebsitePageContext);
-  const { posts, user } = websitePageContext;
+  const { posts, user, users } = websitePageContext;
 
   // eslint-disable-next-line spaced-comment
   const [slicedPosts, setSlicedPosts] = useState([]); //API is not paginated, therefore the slice
+  const [likedPost, setLikedPost] = useState();
 
   useEffect(() => {
     if (isEmpty(posts)) return;
@@ -20,11 +24,48 @@ export default function ProfileScreen() {
   }, [posts]);
 
   // eslint-disable-next-line no-console
-  console.log('CONTEXT', posts, posts?.[0], user, slicedPosts);
+  console.log('CONTEXT', posts?.[0], user, users, slicedPosts);
 
-  const renderPosts = () => slicedPosts?.map((post) => <Card user={user} post={post} key={post._id} />);
+  const handleLike = (id) => async () => {
+    const url = `https://instalura-api.vercel.app/api/posts/${id}/like`;
 
-  const renderLateralMenu = () => <LateralMenu user={user} />;
+    try {
+      const cookies = parseCookies();
+      const token = cookies[LOGIN_COOKIE_APP_TOKEN];
+
+      const response = await HttpClient(url, {
+        method: 'POST',
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+        body: {},
+      });
+
+      setLikedPost(response.data);
+    } catch (err) {
+      throw new Error('Não conseguimos registrar a curtida');
+    }
+  };
+  console.log({ likedPost });
+
+  useEffect(() => {
+    if (isEmpty(likedPost)) return;
+
+    const updatedPosts = slicedPosts.filter((post) => post._id !== likedPost._id);
+    setSlicedPosts([...updatedPosts]);
+    slicedPosts.push(likedPost);
+  }, [likedPost]);
+
+  const renderPosts = () => slicedPosts?.map((post) => (
+    <Card
+      post={post}
+      users={users}
+      key={post._id}
+      onLike={handleLike}
+    />
+  ));
+
+  const renderLateralMenu = () => <LateralMenu user={user} users={users} />;
 
   return (
     <Box backgroundColor="#E5E5E5" padding="2rem 0 0 0">

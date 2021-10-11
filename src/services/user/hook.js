@@ -15,13 +15,19 @@ export const useUserService = {
       error: null,
     });
 
+    const [users, setUsers] = useState({
+      data: null,
+      loading: true,
+      error: null,
+    });
+
     useEffect(() => {
       userService
         .getProfilePage()
         .then((responseFromServer) => {
           setPosts((currentState) => ({
             ...currentState,
-            data: responseFromServer,
+            data: responseFromServer.posts,
             loading: false,
           }));
         })
@@ -39,7 +45,7 @@ export const useUserService = {
         .then((responseFromServer) => {
           setUser((currentState) => ({
             ...currentState,
-            data: responseFromServer,
+            data: responseFromServer.user,
             loading: false,
           }));
         })
@@ -51,11 +57,30 @@ export const useUserService = {
             error: err.message,
           }));
         });
+
+      userService
+        .getUsers()
+        .then((responseFromServer) => {
+          setUsers((currentState) => ({
+            ...currentState,
+            data: responseFromServer.users,
+            loading: false,
+          }));
+        })
+        .catch((err) => {
+          setUsers((currentState) => ({
+            ...currentState,
+            data: null,
+            loading: false,
+            error: err.message,
+          }));
+        });
     }, []);
 
     return {
-      posts: posts.data?.posts,
-      user: user.data?.user,
+      posts: posts.data,
+      user: user.data,
+      users: users.data,
     };
   },
 };

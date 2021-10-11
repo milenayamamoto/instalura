@@ -34,6 +34,37 @@ const GlobalStyle = createGlobalStyle`
   .menu-wrapper .input-wrapper {
     margin-bottom: 0;
   }
+  .card-container {
+    position: relative;
+  }
+  .card-image {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+  }
+  .card-overlay {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .card-icon {
+    width: 100px;
+    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+  }
+  .card-container:hover .card-image {
+    opacity: 0.7;
+  }
+  .card-container:hover .card-overlay {
+    opacity: 1;
+  }
 `;
 
 export default GlobalStyle;

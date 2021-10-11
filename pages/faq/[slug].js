@@ -1,6 +1,7 @@
 import React from 'react';
 import FAQQuestionScreen from '../../src/components/screens/FAQQuestionScreen';
 import websitePageHOC from '../../src/components/wrappers/WebsitePage/hoc';
+import { BASE_URL } from '../../src/theme/utils/baseUrl';
 
 function FAQInternaScreen({ category, question }) {
   return (
@@ -17,7 +18,7 @@ export default websitePageHOC(FAQInternaScreen);
 
 export async function getStaticProps({ params }) {
   const faqCategories = await fetch(
-    'https://instalura-api.vercel.app/api/content/faq',
+    `${BASE_URL}/api/content/faq`,
   ).then(async (respostaDoServer) => {
     const resposta = await respostaDoServer.json();
     return resposta.data;
@@ -58,7 +59,7 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   const faqCategories = await fetch(
-    'https://instalura-api.vercel.app/api/content/faq',
+    `${BASE_URL}/api/content/faq`,
   ).then(async (respostaDoServer) => {
     const resposta = await respostaDoServer.json();
     return resposta.data;

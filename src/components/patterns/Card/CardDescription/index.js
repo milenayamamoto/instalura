@@ -7,12 +7,6 @@ import { Box } from '../../../foundation/layout/Box';
 import { Grid } from '../../../foundation/layout/Grid';
 
 export default function CardDescription({ post }) {
-  // eslint-disable-next-line spaced-comment
-  const handleLike = () => { //TODO
-    // eslint-disable-next-line no-console
-    console.log('LIKED!');
-  };
-
   return (
     <Box
       display="flex"
@@ -22,34 +16,22 @@ export default function CardDescription({ post }) {
       height="170px"
     >
       <Grid.Container>
-        <Grid.Row display="flex" justifyContent="space-between">
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <Button
-              type="a"
-              ghost
-              variant="secondary.main"
-              onClick={handleLike}
-              display="flex"
-              alignItems="center"
-              gap="10px"
-              className="rotate-button"
-            >
-              <img src="/images/heart.svg" alt="Ícone de curtir" />
-            </Button>
+        <Grid.Row
+          display="flex"
+          justifyContent="space-between"
+          marginBottom="1rem"
+          style={{ padding: '0 26px' }}
+        >
+          <Box display="flex" alignItems="center" gap="10px">
+            <img src="/images/heart.svg" alt="Ícone de curtir" />
             <Text style={{ color: '#000' }}>
               {' '}
               <strong>{post?.likes.length}</strong>
             </Text>
-            <Button type="a" ghost variant="secondary.main" className="rotate-button">
-              <img src="/images/messages.svg" alt="Ícone de mensagens" />
-            </Button>
-            <Button type="a" ghost variant="secondary.main" className="rotate-button">
-              <img src="/images/send.svg" alt="Ícone de enviar" />
-            </Button>
-          </div>
-          <Button type="a" ghost variant="secondary.main" className="rotate-button">
-            <img src="/images/bookmark.svg" alt="Ícone de favoritar" />
-          </Button>
+            <img src="/images/messages.svg" alt="Ícone de mensagens" />
+            <img src="/images/send.svg" alt="Ícone de enviar" />
+          </Box>
+          <img src="/images/bookmark.svg" alt="Ícone de favoritar" />
         </Grid.Row>
         <Grid.Row
           display="flex"

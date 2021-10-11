@@ -5,4 +5,5 @@ export const WebsitePageContext = createContext({
   getCMSContent: (cmsKey) => cmsKey,
   profile: {},
   user: {},
+  users: {},
 });

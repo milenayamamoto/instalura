@@ -36,6 +36,23 @@ export const userService = {
       user: session,
     };
   },
+
+  async getUsers() {
+    const url = `${BASE_URL}/api/users`;
+
+    try {
+      const response = await fetch(url).then(async (respostaDoServer) => {
+        const resposta = await respostaDoServer.json();
+        return resposta;
+      });
+
+      return {
+        users: response.data,
+      };
+    } catch (err) {
+      throw new Error('Não conseguimos trazer os usuários');
+    }
+  },
 };
 
 export const githubProfile = {

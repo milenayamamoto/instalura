@@ -7,6 +7,7 @@ import TextField from '../../forms/TextField';
 import { Box } from '../../foundation/layout/Box';
 import { Grid } from '../../foundation/layout/Grid';
 import Text from '../../foundation/Text';
+import { BASE_URL } from '../../../theme/utils/baseUrl';
 
 const formStates = {
   DEFAULT: 'DEFAULT',
@@ -39,7 +40,7 @@ function FormContent() {
       name: userInfo.nome,
     };
 
-    fetch('https://instalura-api.vercel.app/api/users', {
+    fetch(`${BASE_URL}/api/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
