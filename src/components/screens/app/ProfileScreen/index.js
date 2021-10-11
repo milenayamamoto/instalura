@@ -46,6 +46,7 @@ export default function ProfileScreen() {
       throw new Error('Não conseguimos registrar a curtida');
     }
   };
+  // eslint-disable-next-line no-console
   console.log({ likedPost });
 
   useEffect(() => {
