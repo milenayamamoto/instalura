@@ -6,7 +6,7 @@ import Text from '../../../foundation/Text';
 import { Box } from '../../../foundation/layout/Box';
 import { Grid } from '../../../foundation/layout/Grid';
 
-export default function CardDescription({ post }) {
+export default function CardDescription({ isLiked, post }) {
   return (
     <Box
       display="flex"
@@ -23,7 +23,7 @@ export default function CardDescription({ post }) {
           style={{ padding: '0 26px' }}
         >
           <Box display="flex" alignItems="center" gap="10px">
-            <img src="/images/heart.svg" alt="Ícone de curtir" />
+            <img src="/images/heart.svg" alt="Ícone de curtir" className={isLiked ? 'icon-liked' : ''} />
             <Text style={{ color: '#000' }}>
               {' '}
               <strong>{post?.likes.length}</strong>
@@ -57,5 +57,6 @@ CardDescription.defaultProps = {
 };
 
 CardDescription.propTypes = {
+  isLiked: PropTypes.bool.isRequired,
   post: PropTypes.object,
 };

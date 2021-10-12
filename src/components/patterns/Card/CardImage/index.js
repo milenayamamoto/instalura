@@ -1,24 +1,41 @@
 /* eslint-disable react/forbid-prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Lottie } from '@crello/react-lottie';
 import { Button } from '../../../commons/Button';
+import likeAnimation from '../animations/like.json';
 
-export default function CardImage({ post, onLike }) {
-  // const isLiked = post.likes // TODO
+export default function CardImage({ isLiked, post, onLike }) {
+  const [likeButton, setLikeButton] = useState(false);
+
+  const handleLike = (likedPost) => () => {
+    setLikeButton(likedPost._id);
+    onLike(likedPost);
+  };
+
   return (
     <Button
       ghost
-      onClick={onLike(post._id)}
+      onClick={handleLike(post)}
       style={{ padding: 0, width: '100%' }}
       className="card-container"
+      // disabled={isLiked}
     >
       <img src={post?.photoUrl} alt={post?.description} width="100%" className="card-image" />
       <div className="card-overlay">
-        <img
-          src="/images/heart.svg"
-          alt="Ícone de curtida"
-          className="card-icon"
-        />
+        {isLiked && likeButton === post._id ? (
+          <Lottie
+            width="150px"
+            height="150px"
+            config={{ animationData: likeAnimation, loop: false, autoplay: true }}
+          />
+        ) : (
+          <img
+            src="/images/heart.svg"
+            alt="Ícone de curtida"
+            className="card-icon"
+          />
+        )}
       </div>
     </Button>
   );
@@ -29,6 +46,7 @@ CardImage.defaultProps = {
 };
 
 CardImage.propTypes = {
+  isLiked: PropTypes.bool.isRequired,
   post: PropTypes.object,
   onLike: PropTypes.func.isRequired,
 };

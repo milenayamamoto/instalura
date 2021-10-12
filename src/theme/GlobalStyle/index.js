@@ -59,6 +59,9 @@ const GlobalStyle = createGlobalStyle`
     width: 100px;
     filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
   }
+  .icon-liked {
+    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+  }
   .card-container:hover .card-image {
     opacity: 0.7;
   }

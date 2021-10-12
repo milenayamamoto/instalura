@@ -23,14 +23,17 @@ export default function OtherProjects({ users }) {
             type="a"
             ghost
             variant="secondary.main"
-            href="#"
+            href={`https://github.com/${profile?.username}`}
             display="flex"
             alignItems="center"
             gap="10px"
           >
             <img
               src={`https://github.com/${profile?.username}.png`}
-              onError={(e) => { e.target.onerror = null; e.target.src = '/images/avatar.png'; }}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = '/images/avatar.png';
+              }}
               alt={`Foto de ${profile.name}`}
               style={{ borderRadius: '50%', width: '40px' }}
             />
@@ -47,7 +50,7 @@ export default function OtherProjects({ users }) {
             type="a"
             ghost
             variant="secondary.main"
-            href="#"
+            href={`https://github.com/${profile?.username}`}
             display="flex"
             alignItems="center"
             gap="10px"
