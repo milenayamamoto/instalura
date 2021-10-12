@@ -42,7 +42,7 @@ export default function TextField({
   const isFieldInvalid = hasError && isTouched;
 
   return (
-    <InputWrapper>
+    <InputWrapper className="input-wrapper">
       <Input
         type="text"
         placeholder={placeholder}

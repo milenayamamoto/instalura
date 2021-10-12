@@ -8,7 +8,6 @@ import { WebsitePageContext } from '../../src/components/wrappers/WebsitePage';
 import websitePageHOC from '../../src/components/wrappers/WebsitePage/hoc';
 import { Logo } from '../../src/theme/Logo';
 
-// Essa página e desafio, e vamos dar pronto no próximo módulo o 04
 function LoginScreen() {
   const websitePageContext = React.useContext(WebsitePageContext);
 

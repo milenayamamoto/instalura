@@ -61,6 +61,8 @@ export const ButtonWrapper = styled.button`
   ${propToStyle('margin')}
   ${propToStyle('display')}
   ${propToStyle('justifyContent')}
+  ${propToStyle('alignItems')}
+  ${propToStyle('gap')}
   ${propToStyle('fontSize')}
 `;
 

@@ -7,6 +7,7 @@ import TextField from '../../forms/TextField';
 import { Box } from '../../foundation/layout/Box';
 import { Grid } from '../../foundation/layout/Grid';
 import Text from '../../foundation/Text';
+import { BASE_URL } from '../../../theme/utils/baseUrl';
 
 const formStates = {
   DEFAULT: 'DEFAULT',
@@ -39,7 +40,7 @@ function FormContent() {
       name: userInfo.nome,
     };
 
-    fetch('https://instalura-api.vercel.app/api/users', {
+    fetch(`${BASE_URL}/api/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -53,10 +54,9 @@ function FormContent() {
 
         throw new Error('Não foi possível cadastrar o usuário agora: (');
       })
-      .then((respostaConvertidaEmObjeto) => {
+      // eslint-disable-next-line no-unused-vars
+      .then(() => {
         setSubmissionStatus(formStates.DONE);
-        // eslint-disable-next-line no-console
-        console.log(respostaConvertidaEmObjeto);
       })
       .catch((error) => {
         setSubmissionStatus(formStates.ERROR);

@@ -1,4 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import isEmpty from 'lodash/isEmpty';
 import Text from '../src/components/foundation/Text';
 import { Button } from '../src/components/commons/Button';
 import { Grid } from '../src/components/foundation/layout/Grid';
@@ -7,18 +9,20 @@ import { Box } from '../src/components/foundation/layout/Box';
 import websitePageHOC from '../src/components/wrappers/WebsitePage/hoc';
 
 function HomeScreen() {
+  const router = useRouter();
   const websitePageContext = useContext(WebsitePageContext);
+  const { toggleModalCadastro, user } = websitePageContext;
 
   const handleClick = () => {
-    websitePageContext.toggleModalCadastro();
+    toggleModalCadastro();
   };
 
+  useEffect(() => {
+    if (!isEmpty(user)) router.push('/app/profile');
+  }, [websitePageContext]);
+
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      flex="1"
-    >
+    <Box display="flex" flexDirection="column" flex="1">
       <Grid.Container
         marginTop={{
           xs: '32px',
@@ -54,8 +58,9 @@ function HomeScreen() {
                 md: 'left',
               }}
             >
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-              Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industrys standard dummy text
+              ever since the 1500s.
             </Text>
 
             <Button

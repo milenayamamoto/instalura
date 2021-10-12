@@ -3,6 +3,7 @@ import { propToStyle } from '../../../../theme/utils/propToStyle';
 
 export const Box = styled.div`
   ${propToStyle('flex')}
+  ${propToStyle('gap')}
   ${propToStyle('display')}
   ${propToStyle('flexDirection')}
   ${propToStyle('justifyContent')}
@@ -17,6 +18,7 @@ export const Box = styled.div`
   ${propToStyle('padding')}
 
   ${propToStyle('width')}
+  ${propToStyle('height')}
   ${propToStyle('listStyle')}
   ${propToStyle('margin')}
   ${propToStyle('marginLeft')}

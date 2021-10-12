@@ -1,28 +1,21 @@
 import React from 'react';
 import { authService } from '../../src/services/auth/authService';
-import { useUserService } from '../../src/services/user/hook';
+import ProfileScreen from '../../src/components/screens/app/ProfileScreen';
+import websitePageHOC from '../../src/components/wrappers/WebsitePage/hoc';
 
-export default function ProfilePage() {
-  const dados = useUserService.getProfilePage();
-
-  // eslint-disable-next-line no-console
-  console.log(dados);
-  return (
-    <div>
-      Página de Profile!
-      {dados.loading && 'Loading'}
-      {!dados.loading && dados.data && 'Carregou com sucesso!'}
-      {!dados.loading && dados.error}
-      {/* <pre>
-        {JSON.stringify(props, null, 4)}
-      </pre> */}
-      <img
-        src="https://media.giphy.com/media/bn0zlGb4LOyo8/giphy.gif"
-        alt="Nicolas Cage"
-      />
-    </div>
-  );
+function ProfilePage() {
+  return <ProfileScreen />;
 }
+
+ProfilePage.propTypes = ProfileScreen.propTypes;
+
+export default websitePageHOC(ProfilePage, {
+  pageWrapperProps: {
+    seoProps: {
+      headTitle: 'Timeline',
+    },
+  },
+});
 
 export async function getServerSideProps(ctx) {
   const auth = authService(ctx);
@@ -30,14 +23,11 @@ export async function getServerSideProps(ctx) {
 
   if (hasActiveSession) {
     const session = await auth.getSession();
-    // const profilePage = await userService.getProfilePage(ctx);
     return {
       props: {
         user: {
           ...session,
-          // ...profilePage.user,
         },
-        // posts: profilePage.posts,
       },
     };
   }

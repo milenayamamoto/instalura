@@ -2,12 +2,15 @@
 import React, { useState } from 'react';
 import get from 'lodash/get';
 import PropTypes from 'prop-types';
+import isEmpty from 'lodash/isEmpty';
 import Footer from '../../commons/Footer';
 import Menu from '../../commons/Menu';
+import MenuLogado from '../../commons/MenuLogado';
 import Modal from '../../commons/Modal';
 import { Box } from '../../foundation/layout/Box';
 import FormCadastro from '../../patterns/FormCadastro';
 import SEO from '../../commons/SEO';
+import { useUserService } from '../../../services/user/hook';
 
 import { WebsitePageContext } from './context';
 
@@ -21,14 +24,18 @@ export default function WebsitePageWrapper({
 }) {
   const [isModalOpen, setModalState] = useState(false);
 
+  const { posts, user, users } = useUserService.getProfilePage();
+
   return (
     <WebsitePageContext.Provider
       value={{
-        teste: true,
         toggleModalCadastro: () => {
           setModalState(!isModalOpen);
         },
         getCMSContent: (cmsKey) => get(messages, cmsKey),
+        posts,
+        user,
+        users,
       }}
     >
       <SEO
@@ -51,13 +58,13 @@ export default function WebsitePageWrapper({
             <FormCadastro propsDoModal={propsDoModal} />
           )}
         </Modal>
-        {menuProps.display && (
+        {!isEmpty(user) ? <MenuLogado user={user} /> : menuProps.display && (
           <Menu
             onCadastrarClick={() => setModalState(true)}
           />
         )}
         {children}
-        <Footer />
+        {isEmpty(user) && <Footer />}
       </Box>
     </WebsitePageContext.Provider>
   );

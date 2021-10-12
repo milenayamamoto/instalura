@@ -8,6 +8,10 @@ export const colors = {
     main: {
       color: '#F2F2F2',
     },
+    secondary: {
+      color: '#F2F2F2',
+      contrastText: '#88989E',
+    },
   },
   borders: {
     main: {
@@ -34,6 +38,10 @@ export const colors = {
     light: {
       color: '#88989E',
       contrastText: '#fff',
+    },
+    dark: {
+      color: '#070C0E',
+      contrastText: '#000',
     },
   },
   // Feedback colors
