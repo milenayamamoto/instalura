@@ -63,6 +63,7 @@ export default function ProfileScreen() {
       [],
     );
     setSlicedPosts(updatedPosts);
+    setLikedPost(null);
   }, [likedPost]);
 
   const renderPosts = () => slicedPosts?.map((post) => (

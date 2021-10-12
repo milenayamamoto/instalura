@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSnackbar } from 'react-simple-snackbar';
 import { Lottie } from '@crello/react-lottie';
 import errorAnimation from './animations/error.json';
 import successAnimation from './animations/success.json';
@@ -17,6 +18,8 @@ const formStates = {
 };
 
 function FormContent() {
+  const [openSnackbar] = useSnackbar({ position: 'top-center' });
+
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [submissionStatus, setSubmissionStatus] = useState(formStates.DEFAULT);
 
@@ -52,7 +55,8 @@ function FormContent() {
           return respostaDoServidor.json();
         }
 
-        throw new Error('Não foi possível cadastrar o usuário agora: (');
+        openSnackbar('Não foi possível cadastrar o usuário agora!');
+        throw new Error('Não foi possível cadastrar o usuário agora');
       })
       // eslint-disable-next-line no-unused-vars
       .then(() => {
@@ -60,6 +64,7 @@ function FormContent() {
       })
       .catch((error) => {
         setSubmissionStatus(formStates.ERROR);
+        openSnackbar('Erro ao submeter o formulário!');
         // eslint-disable-next-line no-console
         console.error(error);
       });
