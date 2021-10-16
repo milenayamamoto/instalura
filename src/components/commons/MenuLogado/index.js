@@ -1,17 +1,31 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import { destroyCookie } from 'nookies';
 import PropTypes from 'prop-types';
 import { Logo } from '../../../theme/Logo';
 import { Button } from '../Button';
 import { MenuWrapper } from './styles/MenuWrapper';
 import TextField from '../../forms/TextField';
 import Link from '../Link';
+import { LOGIN_COOKIE_APP_TOKEN } from '../../../services/login/loginService';
 
-export default function Menu({ user }) {
+export default function Menu({ user, onChageModal }) {
+  const router = useRouter();
+
   const [search, setSearch] = useState('');
+
+  const handleClick = () => {
+    onChageModal();
+  };
 
   const handleSearch = (event) => {
     const { value } = event.target;
     setSearch(value);
+  };
+
+  const handleLogout = () => {
+    destroyCookie(null, LOGIN_COOKIE_APP_TOKEN);
+    router.push('/');
   };
 
   return (
@@ -34,17 +48,19 @@ export default function Menu({ user }) {
         />
         <Button
           type="img"
-          ghost
           variant="secondary.main"
           className="rotate-button"
+          onClick={handleClick}
+          ghost
         >
           <img src="/images/postIcon.svg" alt="Ícone de criar nova postagem" />
         </Button>
         <Button
-          type="img"
-          ghost
+          type="a"
           variant="secondary.main"
           className="rotate-button"
+          href="/app/profile"
+          ghost
         >
           <img src="/images/home.svg" alt="Ícone de home" />
         </Button>
@@ -55,6 +71,8 @@ export default function Menu({ user }) {
           className="rotate-button"
         >
           <img src="/images/heart.svg" alt="Ícone de curtida" />
+          {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+          {/* //TODO: filters posts with likes */}
         </Button>
         <Button type="img" ghost variant="secondary.main">
           <img
@@ -62,6 +80,15 @@ export default function Menu({ user }) {
             alt="Foto de perfil"
             style={{ borderRadius: '50%', width: '40px' }}
           />
+        </Button>
+        <Button
+          type="a"
+          variant="secondary.main"
+          className="rotate-button"
+          onClick={handleLogout}
+          ghost
+        >
+          <img src="/images/logout.svg" alt="Ícone de logout" />
         </Button>
       </MenuWrapper.RightSide>
     </MenuWrapper>
@@ -75,4 +102,5 @@ Menu.defaultProps = {
 Menu.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   user: PropTypes.object,
+  onChageModal: PropTypes.func.isRequired,
 };

@@ -62,8 +62,11 @@ const GlobalStyle = createGlobalStyle`
   .icon-liked {
     filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
   }
+  .card-container:hover, .card-container:focus {
+    opacity: 1;
+  }
   .card-container:hover .card-image {
-    opacity: 0.7;
+    opacity: 0.5;
   }
   .card-container:hover .card-overlay {
     opacity: 1;

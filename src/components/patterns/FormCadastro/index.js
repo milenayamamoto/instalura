@@ -1,4 +1,7 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { useSnackbar } from 'react-simple-snackbar';
 import { Lottie } from '@crello/react-lottie';
 import errorAnimation from './animations/error.json';
 import successAnimation from './animations/success.json';
@@ -16,7 +19,9 @@ const formStates = {
   ERROR: 'ERROR',
 };
 
-function FormContent() {
+function FormContent({ onClose }) {
+  const [openSnackbar] = useSnackbar({ position: 'top-center' });
+
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [submissionStatus, setSubmissionStatus] = useState(formStates.DEFAULT);
 
@@ -52,14 +57,18 @@ function FormContent() {
           return respostaDoServidor.json();
         }
 
-        throw new Error('Não foi possível cadastrar o usuário agora: (');
+        openSnackbar('Não foi possível cadastrar o usuário agora!');
+        throw new Error('Não foi possível cadastrar o usuário agora');
       })
       // eslint-disable-next-line no-unused-vars
       .then(() => {
         setSubmissionStatus(formStates.DONE);
+        openSnackbar('Usuário cadastrado com sucesso!');
+        onClose();
       })
       .catch((error) => {
         setSubmissionStatus(formStates.ERROR);
+        openSnackbar('Erro ao submeter o formulário!');
         // eslint-disable-next-line no-console
         console.error(error);
       });
@@ -133,7 +142,10 @@ function FormContent() {
   );
 }
 
-// eslint-disable-next-line react/prop-types
+FormContent.propTypes = {
+  onClose: PropTypes.func.isRequired,
+};
+
 export default function FormCadastro({ propsDoModal }) {
   return (
     <Grid.Row marginLeft={0} marginRight={0} flex={1} justifyContent="flex-end">
@@ -155,7 +167,7 @@ export default function FormCadastro({ propsDoModal }) {
             onClick={propsDoModal.onClose}
             ghost
           >
-            X
+            ✕
           </Button>
         </div>
         <Box
@@ -169,7 +181,7 @@ export default function FormCadastro({ propsDoModal }) {
           }}
           {...propsDoModal}
         >
-          <FormContent />
+          <FormContent onClose={propsDoModal.onClose} />
         </Box>
       </Grid.Col>
     </Grid.Row>

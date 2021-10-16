@@ -25,8 +25,8 @@ export default function CardImage({ isLiked, post, onLike }) {
       <div className="card-overlay">
         {isLiked && likeButton === post._id ? (
           <Lottie
-            width="150px"
-            height="150px"
+            width="200px"
+            height="200px"
             config={{ animationData: likeAnimation, loop: false, autoplay: true }}
           />
         ) : (
