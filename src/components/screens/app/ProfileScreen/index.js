@@ -8,6 +8,7 @@ import { WebsitePageContext } from '../../../wrappers/WebsitePage';
 import Card from '../../../patterns/Card';
 import LateralMenu from '../../../commons/LateralMenu';
 import { LOGIN_COOKIE_APP_TOKEN } from '../../../../services/login/loginService';
+import { BASE_URL } from '../../../../theme/utils/baseUrl';
 
 export default function ProfileScreen() {
   const websitePageContext = useContext(WebsitePageContext);
@@ -22,11 +23,11 @@ export default function ProfileScreen() {
   useEffect(() => {
     if (isEmpty(posts)) return;
 
-    setSlicedPosts(posts.slice(0, 15));
+    setSlicedPosts(posts.slice(0, 5));
   }, [posts]);
 
   const handleLike = async (post) => {
-    const url = `https://instalura-api.vercel.app/api/posts/${post._id}/like`;
+    const url = `${BASE_URL}/api/posts/${post._id}/like`;
 
     try {
       const cookies = parseCookies();
@@ -78,10 +79,17 @@ export default function ProfileScreen() {
 
   const renderLateralMenu = () => <LateralMenu user={user} users={users} />;
 
+  const renderMainPosts = () => (
+    <Grid.Col>
+      {isEmpty(posts) && <span>Você não possui nenhuma postagem!</span>}
+      {!isEmpty(slicedPosts) && renderPosts()}
+    </Grid.Col>
+  );
+
   return (
     <Box backgroundColor="#E5E5E5" padding="2rem 0 0 0">
       <Grid.Container display="flex">
-        <Grid.Col>{!isEmpty(slicedPosts) && renderPosts()}</Grid.Col>
+        {renderMainPosts()}
         <Grid.Col>{renderLateralMenu()}</Grid.Col>
       </Grid.Container>
     </Box>

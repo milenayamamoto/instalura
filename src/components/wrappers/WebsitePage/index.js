@@ -13,6 +13,7 @@ import SEO from '../../commons/SEO';
 import { useUserService } from '../../../services/user/hook';
 
 import { WebsitePageContext } from './context';
+import FormPost from '../../patterns/FormPost';
 
 export { WebsitePageContext } from './context';
 export default function WebsitePageWrapper({
@@ -23,6 +24,7 @@ export default function WebsitePageWrapper({
   messages,
 }) {
   const [isModalOpen, setModalState] = useState(false);
+  const [isModalNewPostOpen, setModalNewPostOpen] = useState(false);
 
   const { posts, user, users } = useUserService.getProfilePage();
 
@@ -58,7 +60,17 @@ export default function WebsitePageWrapper({
             <FormCadastro propsDoModal={propsDoModal} />
           )}
         </Modal>
-        {!isEmpty(user) ? <MenuLogado user={user} /> : menuProps.display && (
+        <Modal
+          isOpen={isModalNewPostOpen}
+          onClose={() => {
+            setModalNewPostOpen(false);
+          }}
+        >
+          {(propsDoModal) => (
+            <FormPost propsDoModal={propsDoModal} />
+          )}
+        </Modal>
+        {!isEmpty(user) ? <MenuLogado user={user} onChageModal={() => setModalNewPostOpen(!isModalNewPostOpen)} /> : menuProps.display && (
           <Menu
             onCadastrarClick={() => setModalState(true)}
           />

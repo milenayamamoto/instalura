@@ -51,7 +51,7 @@ export const ButtonWrapper = styled.button`
 
   &:disabled {
     cursor: not-allowed;
-    opacity: .2s;
+    opacity: .2;
   }
 
   ${({ fullWidth }) => fullWidth && css`
