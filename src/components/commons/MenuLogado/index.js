@@ -23,6 +23,9 @@ export default function Menu({
   const handleSearch = (event) => {
     const { value } = event.target;
     setSearch(value);
+  };
+
+  const handleTerm = () => {
     onSearch(search);
   };
 
@@ -55,6 +58,7 @@ export default function Menu({
             variant="secondary.main"
             ghost
             style={{ position: 'absolute', right: 0, top: 0 }}
+            onClick={handleTerm}
           >
             <img src="/images/search.svg" alt="Ícone de pesquisar" />
           </Button>

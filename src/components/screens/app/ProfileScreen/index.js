@@ -16,7 +16,6 @@ export default function ProfileScreen() {
     posts, user, users, hasFilterByLikedPosts, search,
   } = websitePageContext;
 
-  console.log({ hasFilterByLikedPosts, search });
   const [openSnackbar] = useSnackbar({ position: 'top-center' });
 
   const [updatedPosts, setUpdatedPosts] = useState([]);
@@ -29,7 +28,7 @@ export default function ProfileScreen() {
   }, [posts]);
 
   useEffect(() => {
-    if (!hasFilterByLikedPosts) return;
+    if (!hasFilterByLikedPosts) return setUpdatedPosts(posts?.data);
 
     const filteredLikedPosts = updatedPosts.reduce(
       (acc, post) => (post?.likes.some((like) => like.user === user.id) ? [...acc, post] : acc),
@@ -38,8 +37,22 @@ export default function ProfileScreen() {
 
     openSnackbar('Filtro de postagens realizado com sucesso!');
 
-    setUpdatedPosts(filteredLikedPosts);
+    return setUpdatedPosts(filteredLikedPosts);
   }, [hasFilterByLikedPosts]);
+
+  useEffect(() => {
+    if (isEmpty(search)) return setUpdatedPosts(posts?.data);
+
+    const term = new RegExp(search, 'g');
+    const filteredPostsWithTerm = updatedPosts.reduce(
+      (acc, post) => (post?.description.match(term) ? [...acc, post] : acc),
+      [],
+    );
+
+    openSnackbar('Filtro de postagens realizado com sucesso!');
+
+    return setUpdatedPosts(filteredPostsWithTerm);
+  }, [search]);
 
   const handleLike = async (post) => {
     const url = `${BASE_URL}/api/posts/${post._id}/like`;
@@ -97,8 +110,23 @@ export default function ProfileScreen() {
   const renderMainPosts = () => (
     <Grid.Col>
       {(isEmpty(posts?.data) && !posts?.loading) && <span>Você não possui nenhuma postagem!</span>}
-      {hasFilterByLikedPosts && <h2>Exibindo posts curtidos por você</h2>}
-      {!isEmpty(updatedPosts) && renderPosts()}
+
+      {hasFilterByLikedPosts && <small style={{ display: 'block', marginBottom: '1rem' }}>Exibindo posts curtidos por você</small>}
+
+      {!isEmpty(search) && (
+      <small style={{ display: 'block', marginBottom: '1rem' }}>
+        Exibindo posts com a seguinte descrição:
+        {' '}
+        <i>{search}</i>
+      </small>
+      )}
+
+      <span style={{ display: 'block', marginBottom: '1rem' }}>
+        Total de postagens:
+        {' '}
+        {updatedPosts.length}
+      </span>
+      {renderPosts()}
     </Grid.Col>
   );
 
