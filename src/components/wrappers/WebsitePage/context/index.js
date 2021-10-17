@@ -6,4 +6,5 @@ export const WebsitePageContext = createContext({
   profile: {},
   user: {},
   users: {},
+  githubUser: {},
 });

@@ -9,13 +9,13 @@ import TextField from '../../forms/TextField';
 import Link from '../Link';
 import { LOGIN_COOKIE_APP_TOKEN } from '../../../services/login/loginService';
 
-export default function Menu({ user, onChageModal }) {
+export default function Menu({ user, onChangeModal }) {
   const router = useRouter();
 
   const [search, setSearch] = useState('');
 
   const handleClick = () => {
-    onChageModal();
+    onChangeModal();
   };
 
   const handleSearch = (event) => {
@@ -24,7 +24,7 @@ export default function Menu({ user, onChageModal }) {
   };
 
   const handleLogout = () => {
-    destroyCookie(null, LOGIN_COOKIE_APP_TOKEN);
+    destroyCookie(null, LOGIN_COOKIE_APP_TOKEN, { path: '/' });
     router.push('/');
   };
 
@@ -74,7 +74,7 @@ export default function Menu({ user, onChageModal }) {
           {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
           {/* //TODO: filters posts with likes */}
         </Button>
-        <Button type="img" ghost variant="secondary.main">
+        <Button type="img" ghost variant="secondary.main" href="/app/logged">
           <img
             src={`https://github.com/${user?.username}.png`}
             alt="Foto de perfil"
@@ -102,5 +102,5 @@ Menu.defaultProps = {
 Menu.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   user: PropTypes.object,
-  onChageModal: PropTypes.func.isRequired,
+  onChangeModal: PropTypes.func.isRequired,
 };

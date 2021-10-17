@@ -19,9 +19,8 @@ export default function CardImage({ isLiked, post, onLike }) {
       onClick={handleLike(post)}
       style={{ padding: 0, width: '100%' }}
       className="card-container"
-      // disabled={isLiked}
     >
-      <img src={post?.photoUrl} alt={post?.description} width="100%" className="card-image" />
+      <img src={post?.photoUrl} alt={post?.description} width="100%" className="card-image" loading="lazy" />
       <div className="card-overlay">
         {isLiked && likeButton === post._id ? (
           <Lottie
@@ -34,6 +33,7 @@ export default function CardImage({ isLiked, post, onLike }) {
             src="/images/heart.svg"
             alt="Ícone de curtida"
             className="card-icon"
+            loading="lazy"
           />
         )}
       </div>

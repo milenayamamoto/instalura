@@ -16,14 +16,13 @@ export default function ProfileScreen() {
 
   const [openSnackbar] = useSnackbar({ position: 'top-center' });
 
-  // eslint-disable-next-line spaced-comment
-  const [slicedPosts, setSlicedPosts] = useState([]); //API is not paginated, therefore the slice
+  const [updatedPosts, setUpdatedPosts] = useState([]);
   const [likedPost, setLikedPost] = useState();
 
   useEffect(() => {
-    if (isEmpty(posts)) return;
+    if (isEmpty(posts?.data)) return;
 
-    setSlicedPosts(posts.slice(0, 5));
+    setUpdatedPosts(posts?.data);
   }, [posts]);
 
   const handleLike = async (post) => {
@@ -59,15 +58,15 @@ export default function ProfileScreen() {
   useEffect(() => {
     if (isEmpty(likedPost)) return;
 
-    const updatedPosts = slicedPosts.reduce(
+    const newPosts = updatedPosts.reduce(
       (acc, post) => (post._id === likedPost._id ? [...acc, likedPost] : [...acc, post]),
       [],
     );
-    setSlicedPosts(updatedPosts);
+    setUpdatedPosts(newPosts);
     setLikedPost(null);
   }, [likedPost]);
 
-  const renderPosts = () => slicedPosts?.map((post) => (
+  const renderPosts = () => updatedPosts?.map((post) => (
     <Card
       user={user}
       post={post}
@@ -81,8 +80,8 @@ export default function ProfileScreen() {
 
   const renderMainPosts = () => (
     <Grid.Col>
-      {isEmpty(posts) && <span>Você não possui nenhuma postagem!</span>}
-      {!isEmpty(slicedPosts) && renderPosts()}
+      {(isEmpty(posts?.data) && !posts?.loading) && <span>Você não possui nenhuma postagem!</span>}
+      {!isEmpty(updatedPosts) && renderPosts()}
     </Grid.Col>
   );
 
