@@ -9,7 +9,9 @@ import TextField from '../../forms/TextField';
 import Link from '../Link';
 import { LOGIN_COOKIE_APP_TOKEN } from '../../../services/login/loginService';
 
-export default function Menu({ user, onChangeModal }) {
+export default function Menu({
+  user, onChangeModal, onFilterByLikedPosts, onSearch,
+}) {
   const router = useRouter();
 
   const [search, setSearch] = useState('');
@@ -21,6 +23,7 @@ export default function Menu({ user, onChangeModal }) {
   const handleSearch = (event) => {
     const { value } = event.target;
     setSearch(value);
+    onSearch(search);
   };
 
   const handleLogout = () => {
@@ -39,13 +42,23 @@ export default function Menu({ user, onChangeModal }) {
         </Link>
       </MenuWrapper.LeftSide>
       <MenuWrapper.RightSide>
-        <TextField
-          placeholder="Pesquisar"
-          name="search"
-          value={search}
-          onChange={handleSearch}
-          style={{ marginBottom: 0 }}
-        />
+        <span style={{ position: 'relative' }}>
+          <TextField
+            placeholder="Pesquisar"
+            name="search"
+            value={search}
+            onChange={handleSearch}
+            style={{ marginBottom: 0 }}
+          />
+          <Button
+            type="img"
+            variant="secondary.main"
+            ghost
+            style={{ position: 'absolute', right: 0, top: 0 }}
+          >
+            <img src="/images/search.svg" alt="Ícone de pesquisar" />
+          </Button>
+        </span>
         <Button
           type="img"
           variant="secondary.main"
@@ -69,10 +82,9 @@ export default function Menu({ user, onChangeModal }) {
           ghost
           variant="secondary.main"
           className="rotate-button"
+          onClick={onFilterByLikedPosts}
         >
           <img src="/images/heart.svg" alt="Ícone de curtida" />
-          {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-          {/* //TODO: filters posts with likes */}
         </Button>
         <Button type="img" ghost variant="secondary.main" href="/app/logged">
           <img
@@ -103,4 +115,6 @@ Menu.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   user: PropTypes.object,
   onChangeModal: PropTypes.func.isRequired,
+  onFilterByLikedPosts: PropTypes.func.isRequired,
+  onSearch: PropTypes.func.isRequired,
 };

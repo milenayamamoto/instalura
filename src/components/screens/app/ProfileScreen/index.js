@@ -12,8 +12,11 @@ import { BASE_URL } from '../../../../theme/utils/baseUrl';
 
 export default function ProfileScreen() {
   const websitePageContext = useContext(WebsitePageContext);
-  const { posts, user, users } = websitePageContext;
+  const {
+    posts, user, users, hasFilterByLikedPosts, search,
+  } = websitePageContext;
 
+  console.log({ hasFilterByLikedPosts, search });
   const [openSnackbar] = useSnackbar({ position: 'top-center' });
 
   const [updatedPosts, setUpdatedPosts] = useState([]);
@@ -24,6 +27,19 @@ export default function ProfileScreen() {
 
     setUpdatedPosts(posts?.data);
   }, [posts]);
+
+  useEffect(() => {
+    if (!hasFilterByLikedPosts) return;
+
+    const filteredLikedPosts = updatedPosts.reduce(
+      (acc, post) => (post?.likes.some((like) => like.user === user.id) ? [...acc, post] : acc),
+      [],
+    );
+
+    openSnackbar('Filtro de postagens realizado com sucesso!');
+
+    setUpdatedPosts(filteredLikedPosts);
+  }, [hasFilterByLikedPosts]);
 
   const handleLike = async (post) => {
     const url = `${BASE_URL}/api/posts/${post._id}/like`;
@@ -81,6 +97,7 @@ export default function ProfileScreen() {
   const renderMainPosts = () => (
     <Grid.Col>
       {(isEmpty(posts?.data) && !posts?.loading) && <span>Você não possui nenhuma postagem!</span>}
+      {hasFilterByLikedPosts && <h2>Exibindo posts curtidos por você</h2>}
       {!isEmpty(updatedPosts) && renderPosts()}
     </Grid.Col>
   );

@@ -7,4 +7,6 @@ export const WebsitePageContext = createContext({
   user: {},
   users: {},
   githubUser: {},
+  hasFilterByLikedPosts: null,
+  search: '',
 });
