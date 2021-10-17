@@ -21,9 +21,9 @@ export default function ProfileScreen() {
   const [likedPost, setLikedPost] = useState();
 
   useEffect(() => {
-    if (isEmpty(posts)) return;
+    if (isEmpty(posts?.data)) return;
 
-    setSlicedPosts(posts.slice(0, 5));
+    setSlicedPosts(posts?.data.slice(0, 5));
   }, [posts]);
 
   const handleLike = async (post) => {
@@ -81,7 +81,7 @@ export default function ProfileScreen() {
 
   const renderMainPosts = () => (
     <Grid.Col>
-      {isEmpty(posts) && <span>Você não possui nenhuma postagem!</span>}
+      {(isEmpty(posts?.data) && !posts?.loading) && <span>Você não possui nenhuma postagem!</span>}
       {!isEmpty(slicedPosts) && renderPosts()}
     </Grid.Col>
   );

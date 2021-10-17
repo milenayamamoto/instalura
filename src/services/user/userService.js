@@ -56,8 +56,8 @@ export const userService = {
 };
 
 export const githubProfile = {
-  async getGithubProfile(id) {
-    const url = `https://api.github.com/user/${id}`;
+  async getGithubProfile(name) {
+    const url = `https://api.github.com/users/${name}`;
 
     try {
       const response = await fetch(url).then(async (respostaDoServer) => {

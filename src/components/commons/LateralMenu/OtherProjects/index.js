@@ -16,7 +16,7 @@ export default function OtherProjects({ users }) {
   }, [users]);
 
   const renderProfiles = () => randomProfiles?.map((profile) => (
-    <Box>
+    <Box key={profile.username}>
       <Grid.Row alignItems="center">
         <Grid.Col>
           <Button
@@ -80,7 +80,7 @@ export default function OtherProjects({ users }) {
 }
 
 OtherProjects.defaultProps = {
-  users: {},
+  users: [],
 };
 
 OtherProjects.propTypes = {

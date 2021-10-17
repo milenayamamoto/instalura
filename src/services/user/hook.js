@@ -78,15 +78,15 @@ export const useUserService = {
     }, []);
 
     return {
-      posts: posts.data,
+      posts,
       user: user.data,
       users: users.data,
     };
   },
 };
 
-export const useGetUserGithubById = {
-  getGithubProfile(id) {
+export const useGetUserGithubByName = {
+  getGithubProfile(name) {
     const [userGithub, setUserGithub] = useState({
       data: null,
       loading: true,
@@ -95,7 +95,7 @@ export const useGetUserGithubById = {
 
     useEffect(() => {
       githubProfile
-        .getGithubProfile(id)
+        .getGithubProfile(name)
         .then((responseFromServer) => {
           setUserGithub((currentState) => ({
             ...currentState,
@@ -111,10 +111,10 @@ export const useGetUserGithubById = {
             error: err.message,
           }));
         });
-    }, [id]);
+    }, [name]);
 
     return {
-      githubUser: userGithub.data?.githubUser,
+      githubUser: userGithub,
     };
   },
 };

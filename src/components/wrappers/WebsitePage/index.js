@@ -10,7 +10,7 @@ import Modal from '../../commons/Modal';
 import { Box } from '../../foundation/layout/Box';
 import FormCadastro from '../../patterns/FormCadastro';
 import SEO from '../../commons/SEO';
-import { useUserService } from '../../../services/user/hook';
+import { useUserService, useGetUserGithubByName } from '../../../services/user/hook';
 
 import { WebsitePageContext } from './context';
 import FormPost from '../../patterns/FormPost';
@@ -27,6 +27,7 @@ export default function WebsitePageWrapper({
   const [isModalNewPostOpen, setModalNewPostOpen] = useState(false);
 
   const { posts, user, users } = useUserService.getProfilePage();
+  const { githubUser } = useGetUserGithubByName.getGithubProfile(user?.username);
 
   return (
     <WebsitePageContext.Provider
@@ -38,6 +39,7 @@ export default function WebsitePageWrapper({
         posts,
         user,
         users,
+        githubUser,
       }}
     >
       <SEO
@@ -70,7 +72,7 @@ export default function WebsitePageWrapper({
             <FormPost propsDoModal={propsDoModal} />
           )}
         </Modal>
-        {!isEmpty(user) ? <MenuLogado user={user} onChageModal={() => setModalNewPostOpen(!isModalNewPostOpen)} /> : menuProps.display && (
+        {!isEmpty(user) ? <MenuLogado user={user} onChangeModal={() => setModalNewPostOpen(!isModalNewPostOpen)} /> : menuProps.display && (
           <Menu
             onCadastrarClick={() => setModalState(true)}
           />
