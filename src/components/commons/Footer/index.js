@@ -31,6 +31,7 @@ export default function Footer(props) {
         <img
           src="https://www.alura.com.br/assets/img/alura-logo.svg"
           alt="Logo Alura"
+          loading="lazy"
         />
       </a>
       <p>

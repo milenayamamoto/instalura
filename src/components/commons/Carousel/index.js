@@ -65,6 +65,7 @@ export default function Carousel({ onFilter }) {
           alt="cachorro"
           style={{ height: '150px' }}
           className={filter.value}
+          loading="lazy"
         />
       </Button>
       <div style={{ margin: 'auto' }}>{filter.name}</div>

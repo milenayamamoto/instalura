@@ -23,6 +23,7 @@ export default function Profile({ user }) {
               src={`https://github.com/${user?.username}.png`}
               alt="Foto de perfil"
               style={{ borderRadius: '50%', width: '40px' }}
+              loading="lazy"
             />
             <Text color="tertiary.dark">
               {' '}
@@ -40,7 +41,7 @@ export default function Profile({ user }) {
             alignItems="center"
             gap="10px"
           >
-            <img src="/images/github.svg" alt="Ícone Github" />
+            <img src="/images/github.svg" alt="Ícone Github" loading="lazy" />
             <Text color="secondary.main">
               {' '}
               <strong>Github</strong>

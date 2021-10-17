@@ -36,6 +36,7 @@ export default function OtherProjects({ users }) {
               }}
               alt={`Foto de ${profile.name}`}
               style={{ borderRadius: '50%', width: '40px' }}
+              loading="lazy"
             />
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <Text color="tertiary.dark">
@@ -55,7 +56,7 @@ export default function OtherProjects({ users }) {
             alignItems="center"
             gap="10px"
           >
-            <img src="/images/github.svg" alt="Ícone Github" />
+            <img src="/images/github.svg" alt="Ícone Github" loading="lazy" />
             <Text color="secondary.main">
               {' '}
               <strong>Github</strong>

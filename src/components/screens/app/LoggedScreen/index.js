@@ -1,5 +1,5 @@
 import { isEmpty } from 'lodash';
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Box } from '../../../foundation/layout/Box';
 import { Grid } from '../../../foundation/layout/Grid';
 import { WebsitePageContext } from '../../../wrappers/WebsitePage';
@@ -7,14 +7,6 @@ import { WebsitePageContext } from '../../../wrappers/WebsitePage';
 export default function LoggedScreen() {
   const websitePageContext = useContext(WebsitePageContext);
   const { posts, githubUser } = websitePageContext;
-
-  const [slicedPosts, setSlicedPosts] = useState([]); // API is not paginated, therefore the slice
-
-  useEffect(() => {
-    if (isEmpty(posts?.data)) return;
-
-    setSlicedPosts(posts?.data.slice(0, 5));
-  }, [posts]);
 
   const renderProfileHeader = () => {
     if (!isEmpty(githubUser?.error)) {
@@ -154,11 +146,13 @@ export default function LoggedScreen() {
         width: '70%',
       }}
     >
-      {slicedPosts.map((post) => (
+      {posts?.data?.map((post) => (
         <img
+          key={post._id}
           src={post.photoUrl}
           alt={post.description}
           style={{ width: '100%' }}
+          loading="lazy"
         />
       ))}
     </Grid.Container>
