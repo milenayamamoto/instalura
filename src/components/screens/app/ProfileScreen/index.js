@@ -131,10 +131,10 @@ export default function ProfileScreen() {
   );
 
   return (
-    <Box backgroundColor="#E5E5E5" padding="2rem 0 0 0">
+    <Box backgroundColor="#E5E5E5" padding="2rem 0 0 0" style={{ paddingBottom: '2rem' }}>
       <Grid.Container display="flex">
         {renderMainPosts()}
-        <Grid.Col>{renderLateralMenu()}</Grid.Col>
+        <Grid.Col display={{ xs: 'none', md: 'inherit' }}>{renderLateralMenu()}</Grid.Col>
       </Grid.Container>
     </Box>
   );

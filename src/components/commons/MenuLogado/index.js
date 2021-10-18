@@ -116,6 +116,8 @@ export default function MenuLogado({
           </Button>
         </MenuWrapper.RightSide>
       </MenuWrapper>
+
+      {/* Header mobile */}
       <MenuWrapper
         className="menu-wrapper"
         display={{ xs: 'inherit', md: 'none' }}
@@ -133,6 +135,67 @@ export default function MenuLogado({
         >
           <Logo />
         </Link>
+      </MenuWrapper>
+
+      {/* Footer mobile */}
+      <MenuWrapper
+        className="menu-wrapper"
+        display={{ xs: 'inherit', md: 'none' }}
+        style={{
+          position: 'fixed',
+          bottom: '0',
+          width: '100%',
+          backgroundColor: '#FFFFFF',
+          boxShadow: '0px 0px 16px rgba(0, 0, 0, 0.04)',
+          borderRadius: '24px 24px 0px 0px',
+          height: '64px',
+          zIndex: '1',
+        }}
+      >
+        <Button
+          type="a"
+          variant="secondary.main"
+          className="rotate-button"
+          href="/app/profile"
+          ghost
+        >
+          <img src="/images/home.svg" alt="Ícone de home" />
+        </Button>
+        <Button
+          type="img"
+          variant="secondary.main"
+          ghost
+        >
+          <img src="/images/search.svg" alt="Ícone de pesquisar" />
+        </Button>
+        <Button
+          type="img"
+          variant="secondary.main"
+          className="rotate-button"
+          onClick={handleClick}
+          ghost
+        >
+          <img
+            src="/images/postIcon.svg"
+            alt="Ícone de criar nova postagem"
+          />
+        </Button>
+        <Button
+          type="img"
+          ghost
+          variant="secondary.main"
+          className="rotate-button"
+          onClick={onFilterByLikedPosts}
+        >
+          <img src="/images/heart.svg" alt="Ícone de curtida" />
+        </Button>
+        <Button type="img" ghost variant="secondary.main" href="/app/logged">
+          <img
+            src={`https://github.com/${user?.username}.png`}
+            alt="Foto de perfil"
+            style={{ borderRadius: '50%', width: '40px' }}
+          />
+        </Button>
       </MenuWrapper>
     </>
   );

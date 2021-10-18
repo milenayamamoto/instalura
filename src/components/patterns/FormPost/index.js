@@ -1,4 +1,4 @@
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import React, { useState } from 'react';
 import { parseCookies } from 'nookies';
 import { useSnackbar } from 'react-simple-snackbar';
@@ -79,12 +79,11 @@ export default function FormPost({ propsDoModal }) {
 
   return (
     <Box
-      position="fixed"
       backgroundColor="white"
       top="25%"
       left="40%"
       margin="0 auto"
-      width="375px"
+      width={{ xs: '100%', md: '375px' }}
       borderRadius="5px"
       {...propsDoModal}
     >

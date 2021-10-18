@@ -1,4 +1,4 @@
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import React, { useContext } from 'react';
 import { Box } from '../../../foundation/layout/Box';
 import { Grid } from '../../../foundation/layout/Grid';
@@ -16,7 +16,7 @@ export default function LoggedScreen() {
       <p>Não foi possível encontrar esse usuário no Github!</p>
     ) : (
       <Grid.Container marginTop="70px">
-        <Grid.Row>
+        <Grid.Row justifyContent="center">
           <Grid.Col
             value={{ xs: 12, md: 5 }}
             display="flex"
@@ -159,7 +159,7 @@ export default function LoggedScreen() {
   ));
 
   return (
-    <Box backgroundColor="#E5E5E5" padding="2rem 0 0 0" height="100%">
+    <Box backgroundColor="#E5E5E5" padding="2rem 0 8rem" height="100%">
       {renderProfileHeader()}
       {renderPosts()}
     </Box>
