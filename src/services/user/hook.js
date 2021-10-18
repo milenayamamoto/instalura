@@ -1,3 +1,4 @@
+import { isEmpty } from 'lodash';
 import { useState, useEffect } from 'react';
 import { userService, githubProfile } from './userService';
 
@@ -94,6 +95,8 @@ export const useGetUserGithubByName = {
     });
 
     useEffect(() => {
+      if (isEmpty(name)) return;
+
       githubProfile
         .getGithubProfile(name)
         .then((responseFromServer) => {

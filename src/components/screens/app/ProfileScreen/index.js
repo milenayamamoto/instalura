@@ -124,7 +124,7 @@ export default function ProfileScreen() {
       <span style={{ display: 'block', marginBottom: '1rem' }}>
         Total de postagens:
         {' '}
-        {updatedPosts.length}
+        {!isEmpty(updatedPosts) ? updatedPosts?.length : 0}
       </span>
       {renderPosts()}
     </Grid.Col>

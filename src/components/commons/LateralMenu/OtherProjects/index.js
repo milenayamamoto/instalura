@@ -17,7 +17,10 @@ export default function OtherProjects({ users }) {
 
   const renderProfiles = () => randomProfiles?.map((profile) => (
     <Box key={profile.username}>
-      <Grid.Row alignItems="center">
+      <Grid.Row
+        alignItems="center"
+        style={{ display: 'grid', gridTemplateColumns: '2fr 1fr' }}
+      >
         <Grid.Col>
           <Button
             type="a"

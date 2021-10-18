@@ -2,6 +2,7 @@ import { isEmpty } from 'lodash';
 import React, { useState } from 'react';
 import { parseCookies } from 'nookies';
 import { useSnackbar } from 'react-simple-snackbar';
+import Router from 'next/router';
 import { LOGIN_COOKIE_APP_TOKEN } from '../../../services/login/loginService';
 import { BASE_URL } from '../../../theme/utils/baseUrl';
 import { Button } from '../../commons/Button';
@@ -46,11 +47,13 @@ export default function FormPost({ propsDoModal }) {
         method: 'POST',
         headers: {
           authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ ...payload }),
       }).then(async (res) => {
         const resposta = await res.json();
         openSnackbar('Postagem criada com sucesso!');
+        Router.reload();
         return resposta.data;
       });
     } catch (err) {
