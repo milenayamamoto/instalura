@@ -46,6 +46,8 @@ export const Grid = {
     ${propToStyle('marginTop')}
     ${propToStyle('marginBottom')}
     ${propToStyle('flexDirection')}
+    ${propToStyle('width')}
+    ${propToStyle('gap')}
   `,
   Col: styled.div`
     padding-right: 16px;

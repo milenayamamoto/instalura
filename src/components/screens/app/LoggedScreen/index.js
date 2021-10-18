@@ -32,8 +32,8 @@ export default function LoggedScreen() {
           <Grid.Col
             value={{ xs: 12, md: 5 }}
             display="flex"
-            alignItems="flex-start"
             justifyContent="center"
+            alignItems={{ xs: 'center', md: 'flex-start' }}
             flexDirection="column"
           >
             <Grid.Row style={{ gap: '40px' }}>
@@ -137,13 +137,13 @@ export default function LoggedScreen() {
   const renderPosts = () => ((isEmpty(posts?.data) && !posts.loading) ? (
     <p>Esse usuário ainda não realizou nenhuma postagem!</p>
   ) : (
-    <Grid.Container
+    <Grid.Col
       display="grid"
-      marginTop="70px"
+      value={{ xs: 12, md: 10, lg: 8 }}
       style={{
         gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: '4rem',
-        width: '70%',
+        margin: '70px auto 0',
+        gap: '1rem',
       }}
     >
       {posts?.data?.map((post) => (
@@ -155,7 +155,7 @@ export default function LoggedScreen() {
           loading="lazy"
         />
       ))}
-    </Grid.Container>
+    </Grid.Col>
   ));
 
   return (

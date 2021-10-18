@@ -9,8 +9,11 @@ import TextField from '../../forms/TextField';
 import Link from '../Link';
 import { LOGIN_COOKIE_APP_TOKEN } from '../../../services/login/loginService';
 
-export default function Menu({
-  user, onChangeModal, onFilterByLikedPosts, onSearch,
+export default function MenuLogado({
+  user,
+  onChangeModal,
+  onFilterByLikedPosts,
+  onSearch,
 }) {
   const router = useRouter();
 
@@ -35,87 +38,111 @@ export default function Menu({
   };
 
   return (
-    <MenuWrapper
-      className="menu-wrapper"
-      style={{ borderBottom: '1px solid #D5D5D5' }}
-    >
-      <MenuWrapper.LeftSide>
-        <Link href="/app/profile" color="secondary.main">
-          <Logo />
-        </Link>
-      </MenuWrapper.LeftSide>
-      <MenuWrapper.RightSide>
-        <span style={{ position: 'relative' }}>
-          <TextField
-            placeholder="Pesquisar"
-            name="search"
-            value={search}
-            onChange={handleSearch}
-            style={{ marginBottom: 0 }}
-          />
+    <>
+      <MenuWrapper
+        className="menu-wrapper"
+        style={{ borderBottom: '1px solid #D5D5D5' }}
+        display={{ xs: 'none', md: 'inherit' }}
+      >
+        <MenuWrapper.LeftSide>
+          <Link href="/app/profile" color="secondary.main">
+            <Logo />
+          </Link>
+        </MenuWrapper.LeftSide>
+        <MenuWrapper.RightSide>
+          <span style={{ position: 'relative' }}>
+            <TextField
+              placeholder="Pesquisar"
+              name="search"
+              value={search}
+              onChange={handleSearch}
+              style={{ marginBottom: 0 }}
+            />
+            <Button
+              type="img"
+              variant="secondary.main"
+              ghost
+              style={{ position: 'absolute', right: 0, top: 0 }}
+              onClick={handleTerm}
+            >
+              <img src="/images/search.svg" alt="Ícone de pesquisar" />
+            </Button>
+          </span>
           <Button
             type="img"
             variant="secondary.main"
+            className="rotate-button"
+            onClick={handleClick}
             ghost
-            style={{ position: 'absolute', right: 0, top: 0 }}
-            onClick={handleTerm}
           >
-            <img src="/images/search.svg" alt="Ícone de pesquisar" />
+            <img
+              src="/images/postIcon.svg"
+              alt="Ícone de criar nova postagem"
+            />
           </Button>
-        </span>
-        <Button
-          type="img"
-          variant="secondary.main"
-          className="rotate-button"
-          onClick={handleClick}
-          ghost
-        >
-          <img src="/images/postIcon.svg" alt="Ícone de criar nova postagem" />
-        </Button>
-        <Button
-          type="a"
-          variant="secondary.main"
-          className="rotate-button"
+          <Button
+            type="a"
+            variant="secondary.main"
+            className="rotate-button"
+            href="/app/profile"
+            ghost
+          >
+            <img src="/images/home.svg" alt="Ícone de home" />
+          </Button>
+          <Button
+            type="img"
+            ghost
+            variant="secondary.main"
+            className="rotate-button"
+            onClick={onFilterByLikedPosts}
+          >
+            <img src="/images/heart.svg" alt="Ícone de curtida" />
+          </Button>
+          <Button type="img" ghost variant="secondary.main" href="/app/logged">
+            <img
+              src={`https://github.com/${user?.username}.png`}
+              alt="Foto de perfil"
+              style={{ borderRadius: '50%', width: '40px' }}
+            />
+          </Button>
+          <Button
+            type="a"
+            variant="secondary.main"
+            className="rotate-button"
+            onClick={handleLogout}
+            ghost
+          >
+            <img src="/images/logout.svg" alt="Ícone de logout" />
+          </Button>
+        </MenuWrapper.RightSide>
+      </MenuWrapper>
+      <MenuWrapper
+        className="menu-wrapper"
+        display={{ xs: 'inherit', md: 'none' }}
+        style={{
+          borderBottom: '1px solid #D5D5D5',
+          height: '48px',
+          backgroundColor: '#F2F2F2',
+          width: '100%',
+        }}
+      >
+        <Link
           href="/app/profile"
-          ghost
+          color="secondary.main"
+          style={{ margin: 'auto' }}
         >
-          <img src="/images/home.svg" alt="Ícone de home" />
-        </Button>
-        <Button
-          type="img"
-          ghost
-          variant="secondary.main"
-          className="rotate-button"
-          onClick={onFilterByLikedPosts}
-        >
-          <img src="/images/heart.svg" alt="Ícone de curtida" />
-        </Button>
-        <Button type="img" ghost variant="secondary.main" href="/app/logged">
-          <img
-            src={`https://github.com/${user?.username}.png`}
-            alt="Foto de perfil"
-            style={{ borderRadius: '50%', width: '40px' }}
-          />
-        </Button>
-        <Button
-          type="a"
-          variant="secondary.main"
-          className="rotate-button"
-          onClick={handleLogout}
-          ghost
-        >
-          <img src="/images/logout.svg" alt="Ícone de logout" />
-        </Button>
-      </MenuWrapper.RightSide>
-    </MenuWrapper>
+          <Logo />
+        </Link>
+      </MenuWrapper>
+    </>
   );
 }
 
-Menu.defaultProps = {
+MenuLogado.defaultProps = {
   user: {},
 };
 
-Menu.propTypes = {
+MenuLogado.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   user: PropTypes.object,
   onChangeModal: PropTypes.func.isRequired,

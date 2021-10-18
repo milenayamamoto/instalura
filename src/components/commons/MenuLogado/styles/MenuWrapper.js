@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { propToStyle } from '../../../../theme/utils/propToStyle';
 
 export const MenuWrapper = styled.nav`
   font-family: 'Rubik', sans-serif;
@@ -8,6 +9,8 @@ export const MenuWrapper = styled.nav`
   flex-wrap: wrap;
   padding-left: 28px;
   padding-right: 28px;
+
+  ${propToStyle('display')}
 `;
 
 MenuWrapper.LeftSide = styled.div`
