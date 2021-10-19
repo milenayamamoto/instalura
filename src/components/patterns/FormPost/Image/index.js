@@ -14,7 +14,12 @@ export default function FormPostImage({ image, filter }) {
   );
 }
 
+FormPostImage.defaultProps = {
+  image: '',
+  filter: 'none',
+};
+
 FormPostImage.propTypes = {
-  image: PropTypes.string.isRequired,
-  filter: PropTypes.string.isRequired,
+  image: PropTypes.string,
+  filter: PropTypes.string,
 };

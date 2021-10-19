@@ -71,7 +71,7 @@ export default function MenuLogado({
           <Button
             type="img"
             variant="secondary.main"
-            className="rotate-button"
+            className="rotate-button add-new-post"
             onClick={handleClick}
             ghost
           >
@@ -155,36 +155,27 @@ export default function MenuLogado({
         <Button
           type="a"
           variant="secondary.main"
-          className="rotate-button"
           href="/app/profile"
           ghost
         >
           <img src="/images/home.svg" alt="Ícone de home" />
         </Button>
-        <Button
-          type="img"
-          variant="secondary.main"
-          ghost
-        >
+        <Button type="img" variant="secondary.main" ghost>
           <img src="/images/search.svg" alt="Ícone de pesquisar" />
         </Button>
         <Button
+          className="add-new-post"
           type="img"
           variant="secondary.main"
-          className="rotate-button"
           onClick={handleClick}
           ghost
         >
-          <img
-            src="/images/postIcon.svg"
-            alt="Ícone de criar nova postagem"
-          />
+          <img src="/images/postIcon.svg" alt="Ícone de criar nova postagem" />
         </Button>
         <Button
           type="img"
           ghost
           variant="secondary.main"
-          className="rotate-button"
           onClick={onFilterByLikedPosts}
         >
           <img src="/images/heart.svg" alt="Ícone de curtida" />

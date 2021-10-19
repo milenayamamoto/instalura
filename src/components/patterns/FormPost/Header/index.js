@@ -22,6 +22,10 @@ export default function FormPostHeader({ onClose }) {
   );
 }
 
+FormPostHeader.defaultProps = {
+  onClose: undefined,
+};
+
 FormPostHeader.propTypes = {
-  onClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func,
 };

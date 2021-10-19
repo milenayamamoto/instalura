@@ -14,10 +14,10 @@ import FormPostImage from './Image';
 
 // eslint-disable-next-line react/prop-types
 export default function FormPost({ propsDoModal }) {
-  const [image, setImage] = useState();
-  const [description, setDescription] = useState();
+  const [image, setImage] = useState('');
+  const [description, setDescription] = useState('');
   const [isFirstStep, setIsFirstStep] = useState(true);
-  const [choosenFilter, setChoosenFilter] = useState('none');
+  const [choosenFilter, setChoosenFilter] = useState('');
 
   const [openSnackbar] = useSnackbar({ position: 'top-center' });
 
@@ -102,6 +102,7 @@ export default function FormPost({ propsDoModal }) {
           />
           <small>Formatos suportados: jpg, png, svg e xpto.</small>
           <Button
+            id="next"
             type="button"
             variant="primary.main"
             onClick={() => setIsFirstStep(!isFirstStep)}
@@ -123,6 +124,7 @@ export default function FormPost({ propsDoModal }) {
             style={{ marginBottom: 0, padding: '1rem' }}
           />
           <Button
+            id="post"
             type="button"
             variant="primary.main"
             onClick={handlePost}
