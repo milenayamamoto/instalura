@@ -164,7 +164,6 @@ export default function MenuLogado({
           <img src="/images/search.svg" alt="Ícone de pesquisar" />
         </Button>
         <Button
-          className="add-new-post"
           type="img"
           variant="secondary.main"
           onClick={handleClick}

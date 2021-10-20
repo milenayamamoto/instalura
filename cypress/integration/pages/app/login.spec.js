@@ -13,6 +13,9 @@ describe('/pages/app/login/', () => {
         .fillLoginForm({ user: 'omariosouto', password: 'senhasegura' })
         .submitLoginForm();
 
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.wait(3000);
+
       cy.url().should('include', '/app/profile');
 
       cy.wait('@userLogin').then((intercept) => {
