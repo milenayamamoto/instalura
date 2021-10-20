@@ -80,6 +80,10 @@ export default function Carousel({ onFilter }) {
   );
 }
 
+Carousel.defaultProps = {
+  onFilter: undefined,
+};
+
 Carousel.propTypes = {
-  onFilter: PropTypes.func.isRequired,
+  onFilter: PropTypes.func,
 };

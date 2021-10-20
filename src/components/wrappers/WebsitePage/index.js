@@ -10,7 +10,10 @@ import Modal from '../../commons/Modal';
 import { Box } from '../../foundation/layout/Box';
 import FormCadastro from '../../patterns/FormCadastro';
 import SEO from '../../commons/SEO';
-import { useUserService, useGetUserGithubByName } from '../../../services/user/hook';
+import {
+  useUserService,
+  useGetUserGithubByName,
+} from '../../../services/user/hook';
 
 import { WebsitePageContext } from './context';
 import FormPost from '../../patterns/FormPost';
@@ -26,8 +29,19 @@ export default function WebsitePageWrapper({
   const [isModalOpen, setModalState] = useState(false);
   const [isModalNewPostOpen, setModalNewPostOpen] = useState(false);
 
+  const [hasFilterByLikedPosts, setFilterByLikedPosts] = useState(false);
+  const [search, setSearch] = useState('');
+
   const { posts, user, users } = useUserService.getProfilePage();
   const { githubUser } = useGetUserGithubByName.getGithubProfile(user?.username);
+
+  const handleLikeFilter = () => {
+    setFilterByLikedPosts(!hasFilterByLikedPosts);
+  };
+
+  const handleSearch = (term) => {
+    setSearch(term);
+  };
 
   return (
     <WebsitePageContext.Provider
@@ -40,27 +54,20 @@ export default function WebsitePageWrapper({
         user,
         users,
         githubUser,
+        hasFilterByLikedPosts,
+        search,
       }}
     >
-      <SEO
-        {...seoProps}
-      />
+      <SEO {...seoProps} />
 
-      <Box
-        display="flex"
-        flex="1"
-        flexDirection="column"
-        {...pageBoxProps}
-      >
+      <Box display="flex" flex="1" flexDirection="column" {...pageBoxProps}>
         <Modal
           isOpen={isModalOpen}
           onClose={() => {
             setModalState(false);
           }}
         >
-          {(propsDoModal) => (
-            <FormCadastro propsDoModal={propsDoModal} />
-          )}
+          {(propsDoModal) => <FormCadastro propsDoModal={propsDoModal} />}
         </Modal>
         <Modal
           isOpen={isModalNewPostOpen}
@@ -68,14 +75,19 @@ export default function WebsitePageWrapper({
             setModalNewPostOpen(false);
           }}
         >
-          {(propsDoModal) => (
-            <FormPost propsDoModal={propsDoModal} />
-          )}
+          {(propsDoModal) => <FormPost propsDoModal={propsDoModal} />}
         </Modal>
-        {!isEmpty(user) ? <MenuLogado user={user} onChangeModal={() => setModalNewPostOpen(!isModalNewPostOpen)} /> : menuProps.display && (
-          <Menu
-            onCadastrarClick={() => setModalState(true)}
+        {!isEmpty(user) ? (
+          <MenuLogado
+            user={user}
+            onChangeModal={() => setModalNewPostOpen(!isModalNewPostOpen)}
+            onFilterByLikedPosts={handleLikeFilter}
+            onSearch={handleSearch}
           />
+        ) : (
+          menuProps.display && (
+            <Menu onCadastrarClick={() => setModalState(true)} />
+          )
         )}
         {children}
         {isEmpty(user) && <Footer />}

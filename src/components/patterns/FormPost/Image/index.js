@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { Box } from '../../../foundation/layout/Box';
 
 export default function FormPostImage({ image, filter }) {
@@ -14,7 +14,12 @@ export default function FormPostImage({ image, filter }) {
   );
 }
 
+FormPostImage.defaultProps = {
+  image: '',
+  filter: 'none',
+};
+
 FormPostImage.propTypes = {
-  image: PropTypes.string.isRequired,
-  filter: PropTypes.string.isRequired,
+  image: PropTypes.string,
+  filter: PropTypes.string,
 };

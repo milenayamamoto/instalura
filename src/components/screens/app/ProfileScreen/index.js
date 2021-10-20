@@ -12,7 +12,9 @@ import { BASE_URL } from '../../../../theme/utils/baseUrl';
 
 export default function ProfileScreen() {
   const websitePageContext = useContext(WebsitePageContext);
-  const { posts, user, users } = websitePageContext;
+  const {
+    posts, user, users, hasFilterByLikedPosts, search,
+  } = websitePageContext;
 
   const [openSnackbar] = useSnackbar({ position: 'top-center' });
 
@@ -24,6 +26,33 @@ export default function ProfileScreen() {
 
     setUpdatedPosts(posts?.data);
   }, [posts]);
+
+  useEffect(() => {
+    if (!hasFilterByLikedPosts) return setUpdatedPosts(posts?.data);
+
+    const filteredLikedPosts = updatedPosts.reduce(
+      (acc, post) => (post?.likes.some((like) => like.user === user.id) ? [...acc, post] : acc),
+      [],
+    );
+
+    openSnackbar('Filtro de postagens realizado com sucesso!');
+
+    return setUpdatedPosts(filteredLikedPosts);
+  }, [hasFilterByLikedPosts]);
+
+  useEffect(() => {
+    if (isEmpty(search)) return setUpdatedPosts(posts?.data);
+
+    const term = new RegExp(search, 'g');
+    const filteredPostsWithTerm = updatedPosts.reduce(
+      (acc, post) => (post?.description.match(term) ? [...acc, post] : acc),
+      [],
+    );
+
+    openSnackbar('Filtro de postagens realizado com sucesso!');
+
+    return setUpdatedPosts(filteredPostsWithTerm);
+  }, [search]);
 
   const handleLike = async (post) => {
     const url = `${BASE_URL}/api/posts/${post._id}/like`;
@@ -81,15 +110,31 @@ export default function ProfileScreen() {
   const renderMainPosts = () => (
     <Grid.Col>
       {(isEmpty(posts?.data) && !posts?.loading) && <span>Você não possui nenhuma postagem!</span>}
-      {!isEmpty(updatedPosts) && renderPosts()}
+
+      {hasFilterByLikedPosts && <small style={{ display: 'block', marginBottom: '1rem' }}>Exibindo posts curtidos por você</small>}
+
+      {!isEmpty(search) && (
+      <small style={{ display: 'block', marginBottom: '1rem' }}>
+        Exibindo posts com a seguinte descrição:
+        {' '}
+        <i>{search}</i>
+      </small>
+      )}
+
+      <span style={{ display: 'block', marginBottom: '1rem' }}>
+        Total de postagens:
+        {' '}
+        {!isEmpty(updatedPosts) ? updatedPosts?.length : 0}
+      </span>
+      {renderPosts()}
     </Grid.Col>
   );
 
   return (
-    <Box backgroundColor="#E5E5E5" padding="2rem 0 0 0">
+    <Box backgroundColor="#E5E5E5" padding="2rem 0 0 0" style={{ paddingBottom: '2rem' }}>
       <Grid.Container display="flex">
         {renderMainPosts()}
-        <Grid.Col>{renderLateralMenu()}</Grid.Col>
+        <Grid.Col display={{ xs: 'none', md: 'inherit' }}>{renderLateralMenu()}</Grid.Col>
       </Grid.Container>
     </Box>
   );

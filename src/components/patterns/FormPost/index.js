@@ -1,7 +1,8 @@
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import React, { useState } from 'react';
 import { parseCookies } from 'nookies';
 import { useSnackbar } from 'react-simple-snackbar';
+import Router from 'next/router';
 import { LOGIN_COOKIE_APP_TOKEN } from '../../../services/login/loginService';
 import { BASE_URL } from '../../../theme/utils/baseUrl';
 import { Button } from '../../commons/Button';
@@ -13,10 +14,10 @@ import FormPostImage from './Image';
 
 // eslint-disable-next-line react/prop-types
 export default function FormPost({ propsDoModal }) {
-  const [image, setImage] = useState();
-  const [description, setDescription] = useState();
+  const [image, setImage] = useState('');
+  const [description, setDescription] = useState('');
   const [isFirstStep, setIsFirstStep] = useState(true);
-  const [choosenFilter, setChoosenFilter] = useState('none');
+  const [choosenFilter, setChoosenFilter] = useState('');
 
   const [openSnackbar] = useSnackbar({ position: 'top-center' });
 
@@ -46,11 +47,13 @@ export default function FormPost({ propsDoModal }) {
         method: 'POST',
         headers: {
           authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ ...payload }),
       }).then(async (res) => {
         const resposta = await res.json();
         openSnackbar('Postagem criada com sucesso!');
+        Router.reload();
         return resposta.data;
       });
     } catch (err) {
@@ -76,12 +79,11 @@ export default function FormPost({ propsDoModal }) {
 
   return (
     <Box
-      position="fixed"
       backgroundColor="white"
       top="25%"
       left="40%"
       margin="0 auto"
-      width="375px"
+      width={{ xs: '100%', md: '375px' }}
       borderRadius="5px"
       {...propsDoModal}
     >
@@ -100,6 +102,7 @@ export default function FormPost({ propsDoModal }) {
           />
           <small>Formatos suportados: jpg, png, svg e xpto.</small>
           <Button
+            id="next"
             type="button"
             variant="primary.main"
             onClick={() => setIsFirstStep(!isFirstStep)}
@@ -121,6 +124,7 @@ export default function FormPost({ propsDoModal }) {
             style={{ marginBottom: 0, padding: '1rem' }}
           />
           <Button
+            id="post"
             type="button"
             variant="primary.main"
             onClick={handlePost}

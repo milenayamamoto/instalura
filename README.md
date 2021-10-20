@@ -15,14 +15,12 @@
   </a>
 </h1>
 
-<h4 align="center"> 
-	🚧 Instalura em andamento 🚧
-</h4>
-
 <p align="center">
  <a href="#-sobre-o-projeto">Sobre</a> •
  <a href="#-layout">Layout</a> • 
  <a href="#-como-executar-o-projeto">Como executar</a> • 
+ <a href="#-features">Features</a> • 
+ <a href="#-features">Funcionalidades</a> • 
  <a href="#-tecnologias">Tecnologias</a> • 
  <a href="#-autora">Autora</a> • 
  <a href="#user-content--licença">Licença</a>
@@ -50,16 +48,21 @@ O **Bootcamp Front-End Avançado** é oferecido pela [Alura](https://www.alura.c
 ## 🎨 Layout
 
 <br />
+
 O layout da aplicação está disponível no Figma:
+
 <br />
+
 <a href="https://www.figma.com/file/Veefm1pjkeTFcJC7BUqHge/Instalura" target="_blank">
-  <img alt="Badge Figma" src="https://img.shields.io/badge/Acessar%20Layout%20-Figma-%2304D361">
+<img alt="Badge Figma" src="https://img.shields.io/badge/Acessar%20Layout%20-Figma-%2304D361">
 </a>
+
 <br />
+
 
 ---
 
- <br />
+<br />
 
 ## 🚀 Como executar o projeto
 
@@ -78,6 +81,53 @@ $ npm run dev
 $ yarn dev
 
 ```
+
+<br />
+
+---
+
+ <br />
+
+## 🎉 Features
+
+<br />
+
+- SEO
+- Autenticação com jwt
+- Integração com DatoCMS
+
+### CI/CD
+
+- Husky
+- Commitzen
+- Linter
+- Testes de Unidade
+- Testes de Integração
+
+### Animações
+
+- Lottie
+- Framer Motion
+
+### Testes
+
+- Cypress
+- Jest
+- React Testing Library
+
+<br />
+
+---
+
+ <br />
+
+## ☕ Funcionalidades
+
+<br />
+
+- Login
+- Like/Dislike em fotos
+- Criação de postagens
 
 <br />
 
@@ -123,10 +173,6 @@ As seguintes ferramentas foram usadas na construção do projeto:
     <img alt="Linkedin Badge" src="https://img.shields.io/badge/-Milena-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/milenayamamoto/">
   </a>
 
-  <a href="mailto:milenayamamoto@gmail.com">
-    <img alt="email" src="https://img.shields.io/badge/-milenayamamoto@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:milenayamamoto@gmail.com">
-  </a>
-    
   </p>
 
   <br />

@@ -8,7 +8,10 @@ import { Button } from '../../Button';
 export default function Profile({ user }) {
   return (
     <Box>
-      <Grid.Row alignItems="center">
+      <Grid.Row
+        alignItems="center"
+        style={{ display: 'grid', gridTemplateColumns: '2fr 1fr' }}
+      >
         <Grid.Col>
           <Button
             type="a"

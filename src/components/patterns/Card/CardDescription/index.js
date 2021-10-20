@@ -23,7 +23,11 @@ export default function CardDescription({ isLiked, post }) {
           style={{ padding: '0 26px' }}
         >
           <Box display="flex" alignItems="center" gap="10px">
-            <img src="/images/heart.svg" alt="Ícone de curtir" className={isLiked ? 'icon-liked' : ''} />
+            <img
+              src="/images/heart.svg"
+              alt="Ícone de curtir"
+              className={isLiked ? 'icon-liked' : ''}
+            />
             <Text style={{ color: '#000' }}>
               {' '}
               <strong>{post?.likes.length}</strong>
@@ -39,7 +43,7 @@ export default function CardDescription({ isLiked, post }) {
           alignItems="center"
           style={{ padding: '0 26px' }}
         >
-          <Text>
+          <Text className="card-description">
             {' '}
             {post?.description}
           </Text>
