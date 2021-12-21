@@ -23,7 +23,7 @@
     "eslint-plugin-jest": "^25.3.0",
     "framer-motion": "^5.5.5",
     "graphql": "^15.8.0",
-    "graphql-request": "^3.5.0",
+    "graphql-request": "^3.7.0",
     "jest": "^27.2.4",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
@@ -37,12 +37,12 @@
     "react-simple-snackbar": "^1.1.11",
     "styled-components": "^5.3.3",
     "styled-normalize": "^8.0.7",
-    "yup": "^0.32.9"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.2.0",
     "@commitlint/config-conventional": "^15.0.0",
-    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^7.0.2",
     "babel-plugin-styled-components": "^2.0.2",
@@ -55,7 +55,7 @@
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.26.1",
-    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "husky": "^7.0.2",
     "identity-obj-proxy": "^3.0.0",
     "jest-canvas-mock": "^2.3.1",
