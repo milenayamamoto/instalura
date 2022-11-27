@@ -8,6 +8,7 @@
 		"start": "next start",
 		"lint": "eslint --ignore-path .gitignore .",
 		"prepare": "husky install",
+		"commit": "cz",
 		"test": "jest",
 		"test:watch": "jest --watch",
 		"test:integration:open": "cypress open",
@@ -39,11 +40,14 @@
 		"yup": "^0.32.11"
 	},
 	"devDependencies": {
+		"@commitlint/cli": "^17.2.0",
+		"@commitlint/config-conventional": "^16.0.0",
 		"@testing-library/jest-dom": "^5.16.1",
 		"@testing-library/react": "^12.1.2",
 		"@testing-library/react-hooks": "^7.0.2",
 		"babel-plugin-styled-components": "^2.0.2",
 		"cypress": "^11.0.1",
+		"cz-conventional-changelog": "3.3.0",
 		"eslint": "^7.32.0",
 		"eslint-config-airbnb": "^18.2.1",
 		"eslint-config-next": "^12.0.7",
