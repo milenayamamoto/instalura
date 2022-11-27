@@ -99,7 +99,6 @@ $ yarn dev
 ### CI/CD
 
 - Husky
-- Commitzen
 - Linter
 - Testes de Unidade
 - Testes de Integração
