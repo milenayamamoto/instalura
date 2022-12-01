@@ -4789,10 +4789,10 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-react-alice-carousel@^2.5.1:
-  version "2.6.6"
-  resolved "https://registry.yarnpkg.com/react-alice-carousel/-/react-alice-carousel-2.6.6.tgz#e72c5c6934093ade17a8b3c0553c53ef53e8fd99"
-  integrity sha512-kQYajmtX1GsNPH8reRtYPBFVEubpClEgQ0xsb3ZRzl/UBwqn1Gzx1zOKgjBlYHgnCYArIIDb4ijbCTAfWRT1Iw==
+react-alice-carousel@^2.6.7:
+  version "2.6.7"
+  resolved "https://registry.yarnpkg.com/react-alice-carousel/-/react-alice-carousel-2.6.7.tgz#974aa6718359ce36088123f6867c1e70908acccf"
+  integrity sha512-Glm8Dx/krdtsmeSYVzCWj95uw23p6h4wKsfxj+mp55v6Kr42lWJCexjRoTf5e5EQ0O0JeE/GoBGYi+ICvl7Lbw==
   dependencies:
     vanilla-swipe "^2.4.1"
 
