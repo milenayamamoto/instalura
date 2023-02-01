@@ -58,7 +58,7 @@
 		"jest-canvas-mock": "^2.3.1",
 		"jest-styled-components": "^7.0.8",
 		"shelljs": "^0.8.4",
-		"start-server-and-test": "^1.14.0"
+		"start-server-and-test": "^1.15.3"
 	},
 	"license": "MIT"
 }
